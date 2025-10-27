@@ -17,7 +17,7 @@ class ProductCategorySearch extends ProductCategory
     public function rules()
     {
         return [
-            [['id', 'status'], 'integer'],
+            [['id', 'status','parent_id'], 'integer'],
             [['name'], 'safe'],
         ];
     }
@@ -61,6 +61,7 @@ class ProductCategorySearch extends ProductCategory
         $query->andFilterWhere([
             'id' => $this->id,
             'status' => $this->status,
+            'parent_id' => $this->parent_id,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);

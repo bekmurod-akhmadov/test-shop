@@ -2,7 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use kartik\select2\Select2;
+use common\models\NewsCategory;
+use kartik\file\FileInput;
 /** @var yii\web\View $this */
 /** @var common\models\News $model */
 /** @var yii\widgets\ActiveForm $form */
@@ -10,26 +12,65 @@ use yii\widgets\ActiveForm;
 
 <div class="news-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'category_id')->textInput() ?>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+                    
+                    <?= $form->field($model, 'category_id')->widget(Select2::class, [
+                        'data' => \yii\helpers\ArrayHelper::map(NewsCategory::find()->all(), 'id', 'name'),
+                        'options' => ['placeholder' => 'Kategoriyani tanlang...'],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ]) ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+                     
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+                    <?= $form->field($model, 'body')->widget(\yii\redactor\widgets\Redactor::className(), [
+                        'clientOptions' => [
+                            'minHeight' => 200,
+                            'plugins' => ['clips', 'fontcolor','imagemanager']
+                        ]
+                    ])?>
+                </div>
+                
+                <div class="col-md-4">
+                    <?= $form->field($model, 'status')->dropDownList(
+                        [
+                            $model::STATUS_ACTIVE => 'Faol',
+                            $model::STATUS_INACTIVE => 'Nofaol'
+                        ],
+                        ['prompt' => 'Holatni tanlang...']
+                    ) ?>
+                    
+                    <?= $form->field($model, 'image')->widget(FileInput::classname(), [
+                        'options' => [
+                            'accept' => 'image/*',
+                        ],
+                         'pluginOptions' => [
+                            'showUpload' => false,
+                            'showRemove' => false,
+                            'showCancel' => false,
+                            'fileActionSettings' => [
+                                'showUpload' => false,
+                                'showRemove' => false,
+                                'showZoom' => true,
+                                'showDrag' => false,
+                            ],
+                        ],
+                    ]); ?>
+                </div>
+            </div>
 
-    <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <?= $form->field($model, 'status')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+            <div class="form-group">
+                <?= Html::submitButton('Saqlash', ['class' => 'btn btn-success']) ?>
+            </div>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>

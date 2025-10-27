@@ -48,7 +48,12 @@ use yii\helpers\ArrayHelper;
                     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
                 </div>
                 <div class="col-md-12">
-                    <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
+                    <?= $form->field($model, 'body')->widget(\yii\redactor\widgets\Redactor::className(), [
+                        'clientOptions' => [
+                            'minHeight' => 200,
+                            'plugins' => ['clips', 'fontcolor','imagemanager']
+                        ]
+                    ])?>
                 </div>
                 <div class="col-md-12">
                     <?= $form->field($model, 'image')->widget(FileInput::classname(), [

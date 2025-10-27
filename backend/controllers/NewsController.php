@@ -7,6 +7,9 @@ use common\models\NewsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+use common\components\StaticFunctions;
+use Yii;
 
 /**
  * NewsController implements the CRUD actions for News model.
@@ -71,6 +74,15 @@ class NewsController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
+                $image = UploadedFile::getInstance($model,'image');
+                if($image){
+                    $model->image = StaticFunctions::saveImage($image,$model->id,'news');
+                }
+                
+                if(!$model->save()){
+                    $model->loadDefaultValues();
+                }
+
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -92,8 +104,19 @@ class NewsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $oldImage = $model->image;
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $image = UploadedFile::getInstance($model,'image');
+            if($image){
+                $model->image = StaticFunctions::saveImage($image,$model->id,'news');
+            }else{
+                $model->image = $oldImage;
+            }
+            
+            if(!$model->save()){
+                $model->loadDefaultValues();
+            }
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

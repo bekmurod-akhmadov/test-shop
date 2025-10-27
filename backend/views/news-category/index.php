@@ -31,12 +31,53 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'status',
             [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, NewsCategory $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                'attribute' => 'status',
+                'value' => function(NewsCategory $model){
+                    if($model->status == NewsCategory::STATUS_ACTIVE){
+                        return '<span class="badge badge-success bg-success">Aktiv</span>';
+                    }else{
+                        return '<span class="badge badge-danger bg-danger">Mavjud emas</span>';
+                    }
+                },
+                'contentOptions' => ['class' => 'v-align-middle'],
+                'format' => 'raw',
+                'filter' => \yii\helpers\Html::activeDropDownList(
+                    $searchModel,
+                    'status',
+                    NewsCategory::getSatusList(),
+                    ['class' => 'form-control', 'prompt' => 'Barchasi']
+                ),
+            ],
+            [
+                'class' => \yii\grid\ActionColumn::className(),
+                'template' => '{view} {update} {delete}', // qaysi tugmalar chiqishini belgilaydi
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    return \yii\helpers\Url::to([$action, 'id' => $model->id]);
+                },
+                'buttons' => [
+                    'view' => function ($url, $model) {
+                        return \yii\helpers\Html::a('<i class="fa fa-eye"></i>', $url, [
+                            'class' => 'btn btn-sm btn-info',
+                            'title' => 'Ko‘rish',
+                        ]);
+                    },
+                    'update' => function ($url, $model) {
+                        return \yii\helpers\Html::a('<i class="fa fa-edit"></i>', $url, [
+                            'class' => 'btn btn-sm btn-warning',
+                            'title' => 'Tahrirlash',
+                        ]);
+                    },
+                    'delete' => function ($url, $model) {
+                        return \yii\helpers\Html::a('<i class="fa fa-trash"></i>', $url, [
+                            'class' => 'btn btn-sm btn-danger',
+                            'title' => 'O‘chirish',
+                            'data-confirm' => 'Haqiqatan ham o‘chirilsinmi?',
+                            'data-method' => 'post',
+                        ]);
+                    },
+                ],
+                'contentOptions' => ['class' => 'text-center', 'style' => 'white-space: nowrap;'],
             ],
         ],
     ]); ?>

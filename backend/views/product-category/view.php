@@ -33,6 +33,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             [
+                'attribute' => 'parent_id',
+                'value' => function($model){
+                    return $model->parent_id ? $model->parent->name : 'No parent';
+                },
+            ],
+            [
+                'attribute' => 'image',
+                'format' => 'raw',
+                'value'=> function($model){
+                    $image = \common\components\StaticFunctions::getImage($model,'product-category','image');
+                    return "<img src='$image' style='width: 100px;height: 80px;'>";
+                },
+                'contentOptions' => ['class' => 'v-align-middle'],
+            ],
+            [
                 'attribute' => 'status',
                 'value' => function($model){
                     if($model->status == ProductCategory::STATUS_ACTIVE){

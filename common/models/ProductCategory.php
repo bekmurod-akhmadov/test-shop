@@ -10,6 +10,8 @@ use Yii;
  * @property int $id
  * @property string $name
  * @property int $status
+ * @property string $image
+ * @property int $parent_id
  *
  * @property Product[] $products
  */
@@ -33,8 +35,8 @@ class ProductCategory extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'status'], 'required'],
-            [['status'], 'integer'],
-            [['name'], 'string', 'max' => 255],
+            [['status','parent_id'], 'integer'],
+            [['name','image'], 'string', 'max' => 255],
             [['name'], 'unique'],
         ];
     }
@@ -48,6 +50,8 @@ class ProductCategory extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'status' => 'Status',
+            'image' => 'Image',
+            'parent_id' => 'Parent ID',
         ];
     }
 
@@ -61,4 +65,8 @@ class ProductCategory extends \yii\db\ActiveRecord
         return $this->hasMany(Product::class, ['category_id' => 'id']);
     }
 
+    public function getParent()
+    {
+        return $this->hasOne(self::class, ['id' => 'parent_id']);
+    }
 }

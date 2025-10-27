@@ -20,6 +20,20 @@ class NewsCategory extends \yii\db\ActiveRecord
     const STATUS_INACTIVE = 2;
 
 
+    public function getStatusName()
+    {
+        return $this->status == self::STATUS_ACTIVE ? 'Aktiv' : 'Mavjud emas';
+    }
+
+    public static function getSatusList()
+    {
+        return [
+            self::STATUS_ACTIVE => 'Aktiv',
+            self::STATUS_INACTIVE => 'Mavjud emas',
+        ];
+    }
+
+
     /**
      * {@inheritdoc}
      */

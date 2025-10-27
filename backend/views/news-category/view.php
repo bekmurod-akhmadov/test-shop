@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use common\models\NewsCategory;
 
 /** @var yii\web\View $this */
 /** @var common\models\NewsCategory $model */
@@ -16,14 +17,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Tahrirlash', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('O‘chirish', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Haqiqatan ham o‘chirilsinmi?',
                 'method' => 'post',
             ],
         ]) ?>
+        <?= Html::a('Orqaga', ['index'], ['class' => 'btn btn-secondary']) ?>
     </p>
 
     <?= DetailView::widget([
@@ -31,7 +33,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'name',
-            'status',
+            [
+                'attribute' => 'status',
+                'value' => function(NewsCategory $model){
+                    if($model->status == NewsCategory::STATUS_ACTIVE){
+                        return '<span class="badge badge-success bg-success">Aktiv</span>';
+                    }else{
+                        return '<span class="badge badge-danger bg-danger">Mavjud emas</span>';
+                    }
+                },
+                'contentOptions' => ['class' => 'v-align-middle'],
+                'format' => 'raw',
+            ],
         ],
     ]) ?>
 

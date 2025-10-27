@@ -7,6 +7,8 @@ use common\models\ProductCategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+use common\components\StaticFunctions;
 
 /**
  * ProductCategoryController implements the CRUD actions for ProductCategory model.
@@ -71,6 +73,17 @@ class ProductCategoryController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
+                $model->save();
+                $image = UploadedFile::getInstance($model,'image');
+                
+                if($image){
+                    $model->image = StaticFunctions::saveImage($image,$model->id,'product-category');
+                }
+
+                if(!$model->save()){
+                    $model->loadDefaultValues();
+                }
+
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -92,8 +105,20 @@ class ProductCategoryController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $oldImage = $model->image;
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $image = UploadedFile::getInstance($model,'image');
+            
+            if($image){
+                $model->image = StaticFunctions::saveImage($image,$model->id,'product-category');
+            }else{
+                $model->image = $oldImage;
+            }
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            if(!$model->save()){
+                $model->loadDefaultValues();
+            }
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
