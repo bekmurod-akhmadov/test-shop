@@ -13,6 +13,7 @@ use common\models\ProductImage;
 use common\models\ProductChar;
 use backend\models\CommonModels;
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
@@ -36,6 +37,37 @@ class ProductController extends Controller
                         'delete' => ['POST'],
                     ],
                 ],
+
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'actions' => ['index'],
+                            'roles' => ['product.index'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['view'],
+                            'roles' => ['product.view'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['create'],
+                            'roles' => ['product.create'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['update'],
+                            'roles' => ['product.update'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['delete'],
+                            'roles' => ['product.delete'],
+                        ],
+                    ],
+                ]
             ]
         );
     }

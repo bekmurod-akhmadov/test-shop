@@ -16,10 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="user-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?php if(Yii::$app->user->can('user.create')): ?>
+        <p>
+            <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
+    <?php endif; ?>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -31,22 +32,57 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'username',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
-            //'email:email',
-            //'status',
-            //'created_at',
-            //'updated_at',
+            'email:email',
+            [
+                'attribute' => 'status',
+                'value' => function ($model) {
+                    return $model->status == User::STATUS_ACTIVE ? 'Active' : 'Inactive';
+                },
+            ],
+            [
+                'attribute' => 'created_at',
+                'value' => function ($model) {
+                    return date('Y-m-d H:i:s', $model->created_at);
+                },
+            ],
             //'verification_token',
             [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, User $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                'class' => \yii\grid\ActionColumn::className(),
+                'template' => '{view} {update} {delete}', // qaysi tugmalar chiqishini belgilaydi
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    return \yii\helpers\Url::to([$action, 'id' => $model->id]);
+                },
+                'buttons' => [
+                    'view' => function ($url, $model) {
+                        if(Yii::$app->user->can('user.view')){
+                            return \yii\helpers\Html::a('<i class="fa fa-eye"></i>', $url, [
+                                'class' => 'btn btn-sm btn-info',
+                                'title' => 'Ko‘rish',
+                            ]);
+                        }
+                    },
+                    'update' => function ($url, $model) {
+                        if(Yii::$app->user->can('user.update')){
+                            return \yii\helpers\Html::a('<i class="fa fa-edit"></i>', $url, [
+                                'class' => 'btn btn-sm btn-warning',
+                                'title' => 'Tahrirlash',
+                            ]);
+                        }
+                    },
+                    'delete' => function ($url, $model) {
+                        if(Yii::$app->user->can('user.delete')){
+                            return \yii\helpers\Html::a('<i class="fa fa-trash"></i>', $url, [
+                                'class' => 'btn btn-sm btn-danger',
+                                'title' => 'O‘chirish',
+                                'data-confirm' => 'Haqiqatan ham o‘chirilsinmi?',
+                                'data-method' => 'post',
+                            ]);
+                        }
+                    },
+                ],
+                'contentOptions' => ['class' => 'text-center', 'style' => 'white-space: nowrap;'],
             ],
         ],
     ]); ?>
-
 
 </div>

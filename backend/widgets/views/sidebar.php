@@ -40,13 +40,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?=\yii\helpers\Url::to(['news/index'])?>" class="nav-link <?=(\common\components\Helper::getControllerName()) == 'news' ? 'active' : ''?>">
+                            <a href="<?=\yii\helpers\Url::to(['/news/index'])?>" class="nav-link <?=(\common\components\Helper::getControllerName()) == 'news' ? 'active' : ''?>">
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>Yangiliklar</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?=\yii\helpers\Url::to(['news-category/index'])?>" class="nav-link <?=(\common\components\Helper::getControllerName()) == 'news-category' ? 'active' : ''?>">
+                            <a href="<?=\yii\helpers\Url::to(['/news-category/index'])?>" class="nav-link <?=(\common\components\Helper::getControllerName()) == 'news-category' ? 'active' : ''?>">
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>Yangilik Kategoriyalari</p>
                             </a>
@@ -63,13 +63,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?=\yii\helpers\Url::to(['product/index'])?>" class="nav-link <?=(\common\components\Helper::getControllerName()) == 'product' ? 'active' : ''?>">
+                            <a href="<?=\yii\helpers\Url::to(['/product/index'])?>" class="nav-link <?=(\common\components\Helper::getControllerName()) == 'product' ? 'active' : ''?>">
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>Tovarlar</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?=\yii\helpers\Url::to(['product-category/index'])?>" class="nav-link <?=(\common\components\Helper::getControllerName()) == 'product-category' ? 'active' : ''?>">
+                            <a href="<?=\yii\helpers\Url::to(['/product-category/index'])?>" class="nav-link <?=(\common\components\Helper::getControllerName()) == 'product-category' ? 'active' : ''?>">
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>Tovar Kategoriyalari</p>
                             </a>
@@ -77,12 +77,31 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="<?=\yii\helpers\Url::to(['client/index'])?>" class="nav-link <?=in_array(Yii::$app->controller->id , ['client']) ? 'active' : ''?>">
+                    <a href="<?=\yii\helpers\Url::to(['/client/index'])?>" class="nav-link <?=in_array(Yii::$app->controller->id , ['client']) ? 'active' : ''?>">
                         <i class="nav-icon fas fa-user"></i>
                         <p>Mijozlar</p>
                     </a>
                 </li>
 
+                <?php if(Yii::$app->user->can('admin')): ?>
+
+                    <li class="nav-item">
+                        <a href="<?=\yii\helpers\Url::to(['/admin'])?>" class="nav-link <?=in_array(Yii::$app->controller->id , ['client']) ? 'active' : ''?>">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>RBAC</p>
+                        </a>
+                    </li>
+
+                <?php endif; ?>
+
+                <?php if(Yii::$app->user->can('user.index')): ?>
+                    <li class="nav-item">
+                        <a href="<?=\yii\helpers\Url::to(['/user/index'])?>" class="nav-link <?=in_array(Yii::$app->controller->id , ['user']) ? 'active' : ''?>">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>Foydalanuvchilar</p>
+                        </a>
+                    </li>
+                <?php endif; ?>
             </ul>
             <!--end::Sidebar Menu-->
         </nav>

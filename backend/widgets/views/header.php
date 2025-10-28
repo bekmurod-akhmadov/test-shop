@@ -1,3 +1,6 @@
+<?php
+use yii\helpers\Url;
+?>
 <!--begin::Header-->
 <nav class="app-header navbar navbar-expand bg-body">
     <!--begin::Container-->
@@ -10,7 +13,7 @@
                 </a>
             </li>
             <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Home</a></li>
-            <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Contact</a></li>
+            <li class="nav-item d-none d-md-block"><a href="<?=Url::to(['/site/logout'])?>" data-method="post" class="nav-link">Logout</a></li>
         </ul>
         <!--end::Start Navbar Links-->
         <!--begin::End Navbar Links-->
