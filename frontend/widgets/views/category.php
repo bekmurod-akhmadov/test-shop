@@ -6,31 +6,16 @@
             <h2>Popular Categories</h2>
         </div>
         <div class="category-slider-one owl-carousel">
-            <div class="category-card style1">
-                <img src="/img/category/cat-1.png" alt="Image" class="cat-img">
-                <h3><a href="shop-category.html">Fruits &amp; Vegetables</a></h3>
-                <a href="shop-category.html" class="link style1">6 Items <i class="flaticon-right-arrow"></i></a>
-            </div>
-            <div class="category-card style1">
-                <img src="/img/category/cat-2.png" alt="Image" class="cat-img">
-                <h3><a href="shop-category.html">Meat &amp; Poultry</a></h3>
-                <a href="shop-category.html" class="link style1">12 Items <i class="flaticon-right-arrow"></i></a>
-            </div>
-            <div class="category-card style1">
-                <img src="/img/category/cat-3.png" alt="Image" class="cat-img">
-                <h3><a href="shop-category.html">Eggs & Milk</a></h3>
-                <a href="shop-category.html" class="link style1">4 Items <i class="flaticon-right-arrow"></i></a>
-            </div>
-            <div class="category-card style1">
-                <img src="/img/category/cat-8.png" alt="Image" class="cat-img">
-                <h3><a href="shop-category.html">Nuts &amp; Beans</a></h3>
-                <a href="shop-category.html" class="link style1">5 Items <i class="flaticon-right-arrow"></i></a>
-            </div>
-            <div class="category-card style1">
-                <img src="/img/category/cat-9.png" alt="Image" class="cat-img">
-                <h3><a href="shop-category.html">Cheese &amp; Butter</a></h3>
-                <a href="shop-category.html" class="link style1">10 Items <i class="flaticon-right-arrow"></i></a>
-            </div>
+            <?php if (!empty($models)) : ?>
+                <?php foreach ($models as $model) : ?>
+                    <div class="category-card style1">
+                        <img src="<?= $model->getImageFile() ?>" alt="Image" class="cat-img">
+                        <h3><a href="<?=yii\helpers\Url::to(['product/category', 'id' => $model->id])?>"><?= $model->name ?></a></h3>
+                        <a href="<?=yii\helpers\Url::to(['product/category', 'id' => $model->id])?>" class="link style1"><?= $model->getProductsCount() ?> dona <i class="flaticon-right-arrow"></i></a>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        
         </div>
     </div>
 </section>

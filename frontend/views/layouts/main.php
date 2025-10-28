@@ -25,14 +25,23 @@ AppAsset::register($this);
 </head>
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
+<!--Preloader starts-->
+        <div class="loader js-preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
 
         <!-- Page Wrapper End -->
         <div class="page-wrapper">
-            <?= $content ?>
+            <div class="body_overlay"></div>
+            <?= \frontend\widgets\Header::widget() ?>
+
+                <?= $content ?>
+
+            <?=\frontend\widgets\Footer::widget()?>
         </div>
         <!-- Page Wrapper End -->
-
-        <div class="body_overlay"></div>
 
         
 

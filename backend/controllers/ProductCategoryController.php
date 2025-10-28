@@ -167,7 +167,10 @@ class ProductCategoryController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $oldImage = $model->image;
+        $model->delete();
+        StaticFunctions::deleteImage($oldImage,$model->id,'product-category');
 
         return $this->redirect(['index']);
     }

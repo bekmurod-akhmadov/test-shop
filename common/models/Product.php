@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\components\StaticFunctions;
 use Yii;
 
 /**
@@ -31,7 +32,7 @@ class Product extends \yii\db\ActiveRecord
     const STATUS_INACTIVE = 2;
 
     const ACCESSORY_ACTIVE = 1;
-    const ACCESSORY_INACTIVE = 2;
+    const ACCESSORY_INACTIVE = 0;
 
     public $gallery = [];
 
@@ -111,6 +112,11 @@ class Product extends \yii\db\ActiveRecord
     public function getProductImages()
     {
         return $this->hasMany(ProductImage::class, ['product_id' => 'id']);
+    }
+
+    public function getImageFile()
+    {
+        return StaticFunctions::getImage($this, 'product', 'image');
     }
 
 }

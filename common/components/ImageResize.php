@@ -169,7 +169,10 @@ class ImageResize
                     imagecolortransparent($dest_image, $background);
                     imagefill($dest_image, 0, 0 , $background);
                 } else {
-                    $dest_image = imagecreatetruecolor($this->getDestWidth(), $this->getDestHeight());
+                    $dest_image = imagecreatetruecolor(
+                        (int) round($this->getDestWidth()),
+                        (int) round($this->getDestHeight())
+                    );
                 }
 
                 imagealphablending($dest_image, false);
@@ -182,14 +185,14 @@ class ImageResize
         imagecopyresampled(
             $dest_image,
             $this->source_image,
-            $this->dest_x,
-            $this->dest_y,
-            $this->source_x,
-            $this->source_y,
-            $this->getDestWidth(),
-            $this->getDestHeight(),
-            $this->source_w,
-            $this->source_h
+            (int) round($this->dest_x),
+            (int) round($this->dest_y),
+            (int) round($this->source_x),
+            (int) round($this->source_y),
+            (int) round($this->getDestWidth()),
+            (int) round($this->getDestHeight()),
+            (int) round($this->source_w),
+            (int) round($this->source_h)
         );
 
         switch ($image_type) {

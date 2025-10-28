@@ -3,7 +3,7 @@
 namespace common\models;
 
 use Yii;
-
+use common\components\StaticFunctions;
 /**
  * This is the model class for table "product_category".
  *
@@ -68,5 +68,15 @@ class ProductCategory extends \yii\db\ActiveRecord
     public function getParent()
     {
         return $this->hasOne(self::class, ['id' => 'parent_id']);
+    }
+
+    public function getImageFile()
+    {
+        return StaticFunctions::getImage($this, 'product-category', 'image');
+    }
+
+    public function getProductsCount()
+    {
+        return $this->getProducts()->count();
     }
 }

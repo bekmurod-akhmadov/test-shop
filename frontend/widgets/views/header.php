@@ -1,3 +1,6 @@
+<?php
+use yii\bootstrap5\LinkPager;
+?>
 <!-- Header Section Start -->
 <header class="header-wrap style1">
     <div class="header-top">
@@ -59,7 +62,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xxl-2 col-xl-3">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="<?=yii\helpers\Url::home()?>">
                         <img src="/img/logo.png" alt="logo">
                     </a>
                 </div>
@@ -106,164 +109,19 @@
                         <a href="javascript:void(0)"> <i class="ri-close-line"></i></a>
                     </div>
                     <ul class="navbar-nav me-auto">
+                        
                         <li class="nav-item">
-                            <a href="#" class="nav-link active">
-                                Home
-                                <i class="ri-add-line"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="index.html" class="nav-link active">Home One</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="index-2.html" class="nav-link">Home Two</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="index-3.html" class="nav-link">Home Three</a>
-                                </li>
-                            </ul>
+                            <a href="<?=yii\helpers\Url::home()?>" class="nav-link">Asosiy</a>
                         </li>
                         <li class="nav-item">
-                            <a href="about.html" class="nav-link">
-                                About Us
-                            </a>
+                            <a href="<?=yii\helpers\Url::to(['product/index'])?>" class="nav-link">Mahsulotlar</a>
                         </li>
+                        
                         <li class="nav-item">
-                            <a href="gallery.html" class="nav-link">
-                                Gallery
-                            </a>
+                            <a href="<?=yii\helpers\Url::to(['product/discount'])?>" class="nav-link">Aksiyadagi mahsulotlar</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                Shop
-                                <i class="ri-add-line"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        Shop Layout
-                                        <i class="ri-add-line"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="shop-left-sidebar.html" class="nav-link">Shop Left Sidebar</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="shop-right-sidebar.html" class="nav-link">Shop Right Sidebar</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="shop-3-column.html" class="nav-link">Shop 3 Column</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="shop-4-column.html" class="nav-link">Shop 4 Column</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="shop-details.html" class="nav-link">Shop Details</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="wishlist.html" class="nav-link">Wishlist</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="cart.html" class="nav-link">Cart</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="checkout.html" class="nav-link">Checkout</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="track-order.html" class="nav-link">Track Order</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        User Pages
-                                        <i class="ri-add-line"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="register.html" class="nav-link">Register</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="login.html" class="nav-link">Login</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="my-account.html" class="nav-link">My Account</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="recover-password.html" class="nav-link">Recover Password</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                Pages
-                                <i class="ri-add-line"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="faq.html" class="nav-link">FAQ</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="testimonials.html" class="nav-link">Testimonials</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="terms-of-service.html" class="nav-link">Terms of Service</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="error-404.html" class="nav-link">404 Error Page</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                Blog
-                                <i class="ri-add-line"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        Blog Layout
-                                        <i class="ri-add-line"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="blog-no-sidebar.html" class="nav-link">Blog Grid</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="blog-left-sidebar.html" class="nav-link">Blog Left Sidebar</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="blog-right-sidebar.html" class="nav-link">Blog Right Sidebar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        Single Blog
-                                        <i class="ri-add-line"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="blog-details-no-sidebar.html" class="nav-link">Blog Details No Sidebar</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="blog-details-left-sidebar.html" class="nav-link">Blog Details Left Sidebar</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="blog-details-right-sidebar.html" class="nav-link">Blog Details Right Sidebar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="contact.html" class="nav-link">Contact Us</a>
-                        </li>
+                       
+                        
                     </ul>
                     <div class="others-options lg-none">
                         <ul class="contact-info list-style">
@@ -313,3 +171,62 @@
         </div>
     </div>
 </header>
+
+ <div class="cart-popup">
+                <button type="button" class="close-cart-popup"><i class="ri-close-fill"></i></button>
+                <div class="cart-popup-body">
+                    <div class="cart-item">
+                        <div class="cart-item-img">
+                            <img src="/img/products/product-thumb-1.png" alt="Image">
+                        </div>
+                        <div class="cart-item-info">
+                            <h5><a href="shop-details.html">Fresh Almonds</a></h5>
+                            <p>$35</p>
+                        </div>
+                        <div class="cart-item-action">
+                            <button class="delete-cart-item">
+                                <i class="ri-close-circle-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="cart-item">
+                        <div class="cart-item-img">
+                            <img src="/img/products/product-thumb-2.png" alt="Image">
+                        </div>
+                        <div class="cart-item-info">
+                            <h5><a href="shop-details.html">Natural Honey</a></h5>
+                            <p>$120</p>
+                        </div>
+                        <div class="cart-item-action">
+                            <button class="delete-cart-item">
+                                <i class="ri-close-circle-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="cart-item">
+                        <div class="cart-item-img">
+                            <img src="/img/products/product-thumb-3.png" alt="Image">
+                        </div>
+                        <div class="cart-item-info">
+                            <h5><a href="shop-details.html">Organic Onions</a></h5>
+                            <p>$45/Kg</p>
+                        </div>
+                        <div class="cart-item-action">
+                            <button class="delete-cart-item">
+                                <i class="ri-close-circle-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-popup-footer">
+                    <div class="total-amt">
+                        <h5>Total Payable</h5>
+                        <h5>$178.00</h5>
+                    </div>
+                    <div class="cart-popup-btn">
+                        <a href="cart.html" class="btn style1">View Cart</a>
+                        <a href="checkout.html" class="btn style3">Checkout</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Header Section End -->

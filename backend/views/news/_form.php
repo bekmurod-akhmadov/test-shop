@@ -40,13 +40,7 @@ use kartik\file\FileInput;
                 </div>
                 
                 <div class="col-md-4">
-                    <?= $form->field($model, 'status')->dropDownList(
-                        [
-                            $model::STATUS_ACTIVE => 'Faol',
-                            $model::STATUS_INACTIVE => 'Nofaol'
-                        ],
-                        ['prompt' => 'Holatni tanlang...']
-                    ) ?>
+                    P
                     
                     <?= $form->field($model, 'image')->widget(FileInput::classname(), [
                         'options' => [
