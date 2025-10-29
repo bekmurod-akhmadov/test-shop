@@ -28,6 +28,7 @@ class AppAsset extends AssetBundle
     public $js = [
         "js/email-decode.min.js",
         'js/jquery.min.js',
+        "https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.9/jquery.inputmask.min.js",
         'js/bootstrap.bundle.min.js',
         'js/form-validator.min.js',
         'js/contact-form-script.js',
@@ -42,9 +43,10 @@ class AppAsset extends AssetBundle
         'js/jquery.appear.js',
         'js/tweenmax.min.js',
         'js/main.js',
+        'js/custom.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
+        // 'yii\web\YiiAsset',
         'yii\bootstrap5\BootstrapAsset',
     ];
 }

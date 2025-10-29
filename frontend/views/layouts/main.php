@@ -36,7 +36,7 @@ AppAsset::register($this);
         <div class="page-wrapper">
             <div class="body_overlay"></div>
             <?= \frontend\widgets\Header::widget() ?>
-
+            <?= Alert::widget() ?>
                 <?= $content ?>
 
             <?=\frontend\widgets\Footer::widget()?>
