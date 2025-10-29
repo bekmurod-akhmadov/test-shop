@@ -153,7 +153,7 @@ $this->title = $model->name;
                                         <div class="client-review comment-item-wrap">
                                             <div class="comment-item">
                                                 <div class="comment-author-img">
-                                                    <img src="/img/testimonials/client-6.jpg" alt="mage">
+                                                    <i style="font-size: 50px;" class="fas fa-user"></i>
                                                 </div>
                                                 <div class="comment-author-wrap">
                                                     <div class="comment-author-info">
@@ -177,72 +177,10 @@ $this->title = $model->name;
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="comment-item">
-                                                <div class="comment-author-img">
-                                                    <img src="/img/testimonials/client-4.jpg" alt="mage">
-                                                </div>
-                                                <div class="comment-author-wrap">
-                                                    <div class="comment-author-info">
-                                                        <div class="row align-items-start">
-                                                            <div class="comment-author-name">
-                                                                <h5>Anne Frank</h5>
-                                                                <span>15 Dec, 2021</span>
-                                                                <ul class="list-style rating">
-                                                                    <li><i class="ri-star-fill"></i></li>
-                                                                    <li><i class="ri-star-fill"></i></li>
-                                                                    <li><i class="ri-star-fill"></i></li>
-                                                                    <li><i class="ri-star-fill"></i></li>
-                                                                    <li><i class="ri-star-fill"></i></li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="comment-text">
-                                                                <p>Lorem ipsum dolor sit amet sectetur adipiscin elit cras feuiat antesed ces condimentum viverra duis autue nim convallis id diam vitae duis edictumojp erosi dictum sem. Vivamus sed molestie sapien aliquam et facilisis arcu dut.
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="comment-item">
-                                                <div class="comment-author-img">
-                                                    <img src="/img/testimonials/client-2.jpg" alt="mage">
-                                                </div>
-                                                <div class="comment-author-wrap">
-                                                    <div class="comment-author-info">
-                                                        <div class="row align-items-start">
-                                                            <div class="comment-author-name">
-                                                                <h5>Logan Jackson</h5>
-                                                                <span>10 Oct, 2021</span>
-                                                                <ul class="list-style rating">
-                                                                    <li><i class="ri-star-fill"></i></li>
-                                                                    <li><i class="ri-star-fill"></i></li>
-                                                                    <li><i class="ri-star-fill"></i></li>
-                                                                    <li><i class="ri-star-fill"></i></li>
-                                                                    <li><i class="ri-star-fill"></i></li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="comment-text">
-                                                                <p>Lorem ipsum dolor sit amet sectetur adipiscin elit cras feuiat antesed ces condimentum viverra duis autue nim convallis id diam vitae duis edictumojp erosi dictum sem. Vivamus sed molestie sapien aliquam et facilisis arcu dut.
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                         <div class="client-review-form">
                                             <div class="comment-form-title">
                                                 <h4>Add A Review</h4>
-                                                <div class="ratings">
-                                                    <span>Rate This Product</span>
-                                                    <ul class="list-style">
-                                                        <li><i class="ri-star-fill"></i></li>
-                                                        <li><i class="ri-star-fill"></i></li>
-                                                        <li><i class="ri-star-fill"></i></li>
-                                                        <li><i class="ri-star-fill"></i></li>
-                                                        <li><i class="ri-star-fill"></i></li>
-                                                    </ul>
-                                                </div>
                                             </div>
                                             <form action="#" class="comment-form">
                                                 <div class="row gx-3">

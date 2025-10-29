@@ -34,8 +34,8 @@
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                                             <div class="product-card style2">
                                                <ul class="product-option list-style">
-                            <li><a href="<?=yii\helpers\Url::to(['product/view', 'id' => $model->id])?>"><i class="fas fa-eye"></i></a></li>
-                        </ul>
+                                                    <li><a href="<?=yii\helpers\Url::to(['product/view', 'id' => $model->id])?>"><i class="fas fa-eye"></i></a></li>
+                                                </ul>
                                                 <div class="product-img">
                                                     <img src="<?= $model->getImageFile() ?>" alt="image">
                                                     <?php if ($model->discount_price) : ?>

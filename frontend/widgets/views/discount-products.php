@@ -18,8 +18,8 @@
                 
                     <div class="product-card style1">
                         <ul class="product-option list-style">
-                        <li><a href="<?=yii\helpers\Url::to(['product/view', 'id' => $model->id])?>"><i class="fas fa-eye"></i></a></li>
-                    </ul>
+                            <li><a href="<?=yii\helpers\Url::to(['product/view', 'id' => $model->id])?>"><i class="fas fa-eye"></i></a></li>
+                        </ul>
                         <div class="product-img">
                             <img src="<?= $model->getImageFile() ?>" alt="image">
                             <?php if ($model->discount_price) : ?>

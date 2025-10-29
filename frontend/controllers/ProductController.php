@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use common\models\Product;
+use common\models\Comment;
 use Yii;
 use yii\web\Controller;
 use yii\data\Pagination;
@@ -57,7 +58,7 @@ class ProductController extends Controller
             'model' => $model,
             'recentProducts' => $recentProducts,
             'relatedProducts' => $relatedProducts,
-            'additionalProducts' => $additionalProducts
+            'additionalProducts' => $additionalProducts,
         ]);
     }
 

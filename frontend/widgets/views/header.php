@@ -45,12 +45,17 @@ use yii\bootstrap5\LinkPager;
                             </select>
                         </div>
                         <div class="user-menu">
-                            <span><img src="/img/user.jpg" alt="Image">Tony Stark</span>
+
+                            <span><img src="/img/user.jpg" alt="Image"><?= Yii::$app->user->isGuest ? 'Mijoz' : Yii::$app->user->identity->username ?></span>
                             <ul class="list-style">
-                                <li><a href="wishlist.html">My Orders</a></li>
-                                <li><a href="cart.html">Shopping Cart</a></li>
-                                <li><a href="wishlist.html">My Wishlist</a></li>
-                                <li><a href="login.html">Logout</a></li>
+                                <li><a href="<?=yii\helpers\Url::to(['client/profile'])?>">Profil</a></li>
+                                <li><a href="<?=yii\helpers\Url::to(['client/orders'])?>">Savatcha</a></li>
+                                <li><a href="wishlist.html">Yoqtirganlarim</a></li>
+                                <?php if(!Yii::$app->user->isGuest) { ?>
+                                <li><a href="<?=yii\helpers\Url::to(['client/logout'])?>">Chiqish</a></li>
+                                <?php } else { ?>
+                                <li><a href="<?=yii\helpers\Url::to(['client/login'])?>">Kirish</a></li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>
