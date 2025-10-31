@@ -127,4 +127,8 @@ class Product extends \yii\db\ActiveRecord
         return Wishlist::find()->where(['product_id' => $this->id, 'client_id' => Yii::$app->user->identity->id])->exists();
     }
 
+    public function actualPrice(){
+        return !empty($this->discount_price) ? $this->discount_price : $this->price;
+    }
+
 }

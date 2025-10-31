@@ -1,27 +1,21 @@
 <?php
-
 /** @var yii\web\View $this */
-/** @var string $name */
-/** @var string $message */
 /** @var Exception $exception */
-
 use yii\helpers\Html;
 
-$this->title = $name;
+$this->title = $exception ? $exception->statusCode : 'Error';
 ?>
 <div class="site-error">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
+        <?php if ($exception): ?>
+            <?= nl2br(Html::encode($exception->getMessage())) ?>
+        <?php else: ?>
+            <?= nl2br(Html::encode($message ?? 'No message available.')) ?>
+        <?php endif; ?>
     </div>
 
-    <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
-
+    <p>The above error occurred while the Web server was processing your request.</p>
 </div>

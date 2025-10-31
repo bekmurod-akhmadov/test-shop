@@ -13,6 +13,10 @@ class ClientController extends Controller
 {
     public function actionLogin()
     {
+        if(!Yii::$app->user->isGuest){
+            return $this->redirect('profile');
+        }
+        
         $model = new LoginForm();
         if($model->load(Yii::$app->request->post()) && $model->login()){
             return $this->redirect('profile');
@@ -24,6 +28,9 @@ class ClientController extends Controller
 
     public function actionRegister()
     {
+        if(!Yii::$app->user->isGuest){
+            return $this->redirect('profile');
+        }
         $model = new RegisterForm();
         if($model->load(Yii::$app->request->post()) && $model->register()){
             Yii::$app->session->setFlash('success', 'Email tasdiqlash uchun link yuborildi');
@@ -51,7 +58,7 @@ class ClientController extends Controller
 
     public function actionProfile()
     {
-    
+        
         if(Yii::$app->user->isGuest){
             return $this->redirect('login');
         }
@@ -114,16 +121,6 @@ class ClientController extends Controller
         return $this->render('add-address', [
             'model' => $model
         ]);
-    }
-
-    public function actionMyCart()
-    {
-        return $this->render('my-cart');
-    }
-
-    public function actionMyWishlist()
-    {
-        return $this->render('my-wishlist');
     }
 
     public function actionMyOrders()

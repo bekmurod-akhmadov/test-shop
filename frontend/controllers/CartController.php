@@ -1,12 +1,16 @@
 <?php
 namespace frontend\controllers;
 
-use yii\web\Controller;
 use common\models\Product;
 use common\models\Cart;
 use yii\web\Response;
 use common\models\Wishlist;
 use Yii;
+use yii\web\Controller;
+use common\models\Address;
+use common\models\Order;
+use common\models\OrderItem;
+use common\components\TelegramNotificator;
 
 class CartController extends Controller
 {
@@ -164,5 +168,71 @@ class CartController extends Controller
         }
         $wishlist->delete();
         return $this->redirect(['wishlist']);
+    }
+
+    public function actionCheckout(){
+        $client = Yii::$app->user->identity;
+        $adresses = Address::find()->where(['client_id'=>$client->id])->all();
+        $cart = Cart::find()->where(['client_id'=>$client->id])->all();
+        if(!$cart){
+            Yii::$app->session->setFlash('error', 'Savatcha bo`sh');
+            return $this->redirect(['checkout']);
+        }
+
+        if(Yii::$app->request->post()){
+            $address_id = Yii::$app->request->post()['Client']['address_id'];
+            $address = Address::findOne($address_id);
+            if(!$address){
+                Yii::$app->session->setFlash('error', 'Manzil topilmadi');
+                return $this->redirect(['checkout']);
+            }
+            $transaction = Yii::$app->db->beginTransaction();
+            try{
+                $cartObject = new Cart();
+                
+                $order = new Order();
+                $order->client_id = $client->id;
+                $order->address = $address->city.', '.$address->district.', '.$address->address;
+                $order->created_at = date('Y-m-d H:i:s');
+                $order->total_count = $cartObject->getTotalCount();
+                $order->total_price = $cartObject->getTotalPrice();
+                $order->save();
+
+
+                foreach($cart as $item){
+                    
+                    $orderItem = new OrderItem();
+                    $orderItem->order_id = $order->id;
+                    $orderItem->product_id = $item->product_id;
+                    $orderItem->qty = $item->qty;
+                    $orderItem->price = $item->product->actualPrice();
+                    $orderItem->save();
+                }
+                
+                Cart::deleteAll(['client_id' => $client->id]);
+
+                $telegramNotificator = new TelegramNotificator();
+                $telegramNotificator->sendOrderNotification($order);
+
+                $transaction->commit();
+                Yii::$app->session->setFlash('success', 'Buyurtma qo`shildi');
+                return $this->redirect(['thanks']);
+            }catch(\Exception $e){
+                $transaction->rollBack();
+                Yii::$app->session->setFlash('error', 'Buyurtma qo`shilmadi');
+                return $this->redirect(['checkout']);
+            }
+            
+        }
+
+        return $this->render('checkout',[
+            'client' => $client,
+            'adresses'=>$adresses,
+            'carts'=>$cart
+        ]);
+    }
+
+    public function actionThanks(){
+        return $this->render('thanks');
     }
 }

@@ -110,75 +110,20 @@ class StaticFunctions {
         return $text;
     }
 
-    public static function getLangId() {
-        $lang = Yii::$app->language;
-        $query = Languages::find()->filterWhere(['abb' => $lang]);
-        if($query->exists() && $query->one()->abb != Yii::$app->params['main_language'])
-            return $query->one()->id;
+    // public static function getSettings( $id = '' )
+    // {
 
-        return 0;
-    }
-    public static function kcfinder($text) {
-        $replace = Yii::$app->params['backend'].'/kcfinder/upload/images/';
-        $replace2 = Yii::$app->params['backend'].'/kcfinder/upload/files/';
-        $result = str_replace('/kcfinder/upload/images/',$replace,$text);
-        $result = str_replace('/kcfinder/upload/files/',$replace2,$result);
-        return $result;
-    }
-    public static function getLangs()
-    {
-        $result = [];
-//        $result []= Yii::$app->params['main_lang'];
-        $langs = Languages::find()->where('status>-1')->all();
-        foreach($langs as $lang) {
-            $result []= ['abb' => $lang->abb, 'name' => $lang->name];
-        }
-        $array = [];
-        foreach($result as $lang) {
-            if($lang['abb'] == Yii::$app->language) {
-                $array [] = ['abb' => $lang['abb'], 'name' => $lang['name']];
-                break;
-            }
-        }
-        foreach($result as $lang) {
-            if($lang['abb'] != Yii::$app->language && $lang['abb']) {
-                $array [] = ['abb' => $lang['abb'], 'name' => $lang['name']];
-            }
-        }
-        return $array;
-    }
-    public static function getDate($d = false, $w = false)
-    {
-        $lang = Yii::$app->language;
-        if($lang == 'uz' || $lang == 'ru' || $lang == 'en') {
-            $month = $d === false ? date('n') : date('n', strtotime($d));
-            $month = Yii::$app->params['month'][$lang][$month];
-            $day = $d === false ? date('j') : date('j', strtotime($d));
-            $year = $d === false ? date('Y') : date('Y', strtotime($d));
-            $week = $d === false ? date('w') : date('w', strtotime($d));
-            $week = Yii::$app->params['week'][$lang][$week];
-            $date = $day.' '.$month.' '.$year;
-            $date .= $w === false ? '' : ' '.$week;
-            return $date;
-        }
+    //     if( $id )
+    //     {
+    //         if ( Settings::findOne( $id ) )
+    //         {
+    //             return Settings::findOne( $id )->val;
+    //         }
 
-        return Yii::$app->formatter->asDate('now', 'php:d F H:i D');
-    }
+    //         return '';
+    //     }
 
-    public static function getSettings( $id = '' )
-    {
-
-        if( $id )
-        {
-            if ( Settings::findOne( $id ) )
-            {
-                return Settings::findOne( $id )->val;
-            }
-
-            return '';
-        }
-
-    }
+    // }
 
     public static function getRegionData($parametr)
     {

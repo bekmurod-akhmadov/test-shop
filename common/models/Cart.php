@@ -93,4 +93,28 @@ class Cart extends \yii\db\ActiveRecord
         return $cart;
     }
 
+    public function getTotalPrice(){
+        
+        $sum = 0;
+        $models = self::find()->where(['client_id'=>Yii::$app->user->identity->id])->all();
+        if(!empty($models)){
+            foreach ($models as $model){
+                $sum += $model->qty * $model->product->actualPrice();
+            }
+            return $sum;
+        }
+        return 0;
+    }
+    
+    public function getTotalCount(){
+        $qty = 0;
+        $models = self::find()->where(['client_id'=>Yii::$app->user->identity->id])->all();
+        if(!empty($models)){
+            foreach ($models as $model){
+                $qty += $model->qty;
+            }
+            return $qty;
+        }
+        return 0;
+    }
 }

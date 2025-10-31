@@ -17,13 +17,13 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="<?=yii\helpers\Url::to([''])?>">
+                                        <a href="<?=yii\helpers\Url::to(['cart/index'])?>">
                                             <i class="flaticon-next"></i>
                                             Savatcha
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="<?=yii\helpers\Url::to(['client/my-wishlist'])?>">
+                                        <a href="<?=yii\helpers\Url::to(['cart/wishlist'])?>">
                                             <i class="flaticon-next"></i>
                                             Yoqtirganlarim
                                         </a>

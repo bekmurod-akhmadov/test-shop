@@ -26,6 +26,8 @@ class Client extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
     const STATUS_INACTIVE = 0;
 
+    public $address_id;
+
     /**
      * {@inheritdoc}
      */
@@ -40,9 +42,10 @@ class Client extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
+            ['address_id','required'],
             [['email', 'phone', 'first_name', 'last_name', 'username', 'password', 'auth_key', 'access_token'], 'default', 'value' => null],
             [['status'], 'default', 'value' => 1],
-            [['status','confirmation_code'], 'integer'],
+            [['status','confirmation_code','address_id'], 'integer'],
             [['email', 'phone', 'first_name', 'last_name', 'username', 'password', 'auth_key', 'access_token'], 'string', 'max' => 255],
             [['email'], 'unique'],
             [['username'], 'unique'],
@@ -109,4 +112,19 @@ class Client extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return Yii::$app->security->validatePassword($password,$this->password);
     }
 
+    public function isCompleted(){
+        if($this->first_name && $this->last_name && $this->phone && $this->email){
+            return true;
+        }
+        return false;
+    }
+
+    public function getAddressesList(){
+        $addresses = Address::find()->where(['client_id'=>$this->id])->all();
+        $list = [];
+        foreach ($addresses as $address){
+            $list[$address->id] = $address->city.', '.$address->district.', '.$address->address;
+        }
+        return $list;
+    }
 }

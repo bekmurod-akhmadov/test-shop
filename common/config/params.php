@@ -28,4 +28,9 @@ return [
     'senderName' => 'Example.com mailer',
     'user.passwordResetTokenExpire' => 3600,
     'user.passwordMinLength' => 8,
+
+    'telegram' => [
+        'botToken' => '8346965907:AAGluL2lMlNYGvzv9yfFexiqzQkBKAhJ6sQ',
+        'chatId' => '7253897723',
+    ],
 ];
