@@ -7,10 +7,10 @@
                     <div class="row align-items-center">
                         <div class="col-md-7 col-sm-8">
                             <div class="breadcrumb-title">
-                                <h2>Shop 3 Column</h2>
+                                <h2><?= $category->name ?></h2>
                                 <ul class="breadcrumb-menu list-style">
                                     <li><a href="<?= yii\helpers\Url::home() ?>">Asosiy </a></li>
-                                    <li>Shop 3 Column</li>
+                                    <li><?= $category->name ?></li>
                                 </ul>
                             </div>
                         </div>
@@ -59,13 +59,17 @@
                                                                 <p class="product-price"><?= number_format($model->price , '0', ' ', ' ') ?> so'm</p>
                                                             <?php endif; ?>
                                                     </div>
-                                                        <a class="add-to-cart" href="<?=yii\helpers\Url::to(['cart/add', 'id' => $model->id])?>">
+                                                        <a class="add-to-cart" data-id="<?= $model->id ?>" href="<?=yii\helpers\Url::to(['cart/add', 'id' => $model->id])?>">
                                                             <i class="ri-shopping-cart-2-line"></i>
                                                         </a>
                                                 </div>
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
+                                <?php else: ?>
+                                    <div class="image-block text-center">
+                                        <img src="/default/nothing-found.jpg" alt="">
+                                    </div>
                                 <?php endif; ?>
                                 
                             </div>

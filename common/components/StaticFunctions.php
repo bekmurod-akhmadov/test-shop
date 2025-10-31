@@ -2,21 +2,13 @@
 
 namespace common\components;
 
-use common\models\Brand;
-use common\models\Color;
-use common\models\Comment;
-use common\models\Course;
 use common\models\Languages;
-use common\models\News;
 use common\models\NewsCategory;
-use common\models\Product;
-use common\models\ProductCategory;
-use common\models\RegionSettings;
-use common\models\TarifChar;
-use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
 use common\components\ImageResize;
 use common\models\Settings;
+use common\models\Cart;
+use common\models\Wishlist;
 use Yii;
 
 class StaticFunctions {
@@ -270,36 +262,23 @@ class StaticFunctions {
         return $answer;
     }
 
-
-    public static function getNewsCategoryCount($id){
-       return News::find()->where(['category'=>$id])->count();
+    public static function getCartCount(){
+        $user_id = Yii::$app->user->identity->id;
+        $models = Cart::find()->where(['client_id'=>$user_id])->all();
+        $count = 0;
+        foreach ($models as $model){
+            $count += $model->qty;
+        }
+        return $count;
     }
 
-    public static function getNewsComment($id){
-        return Comment::find()->where(['status'=>1,'comment_id'=>$id])->count();
-
+    public static function getWishlistCount(){
+        $user_id = Yii::$app->user->identity->id;
+        $models = Wishlist::find()->where(['client_id'=>$user_id])->all();
+        $count = 0;
+        foreach ($models as $model){
+            $count += $model->qty;
+        }
+        return $count;
     }
-
-    public static function getProductCategory(){
-        return ProductCategory::find()->where(['status'=>1])->all();
-    }
-
-    public static function getProductColor(){
-        return Color::find()->where(['status'=>1])->all();
-    }
-
-    public static function getProductBrand(){
-        return Brand::find()->where(['status'=>1])->all();
-    }
-
-    public static function getCategoryCounter($id){
-        return Product::find()->where(['status' => 1 , 'product_id' => $id])->count();
-    }
-
-    public static function getBrandCounter($id){
-        return Product::find()->where(['status' => 1 , 'brand_id' => $id])->count();
-    }
-
-
-
 }

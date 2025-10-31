@@ -39,7 +39,7 @@
                                 <p class="product-price"><?= number_format($model->price , '0', ' ', ' ') ?> so'm</p>
                             <?php endif; ?>
                         </div>
-                        <a class="add-to-cart" href="<?=yii\helpers\Url::to(['cart/add', 'id' => $model->id])?>">
+                        <a class="add-to-cart" data-id="<?= $model->id ?>" href="<?=yii\helpers\Url::to(['cart/add', 'id' => $model->id])?>">
                             <i class="ri-shopping-cart-2-line"></i>
                         </a>
                     </div>

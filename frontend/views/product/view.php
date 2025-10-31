@@ -94,7 +94,7 @@ $this->title = $model->name;
                                         <div class="product-more-option-item">
                                             <div class="product-quantity">
                                                 <div class="qtySelector">
-                                                    <input type="text" class="qtyValue" value="01" />
+                                                    <input type="text" id="qty" class="qtyValue" value="1" />
                                                     <span class="increaseQty">
                                                         <i class="ri-add-line"></i>
                                                     </span>
@@ -102,7 +102,7 @@ $this->title = $model->name;
                                                         <i class="ri-subtract-line"></i>
                                                     </span>
                                                 </div>
-                                                <a href="cart.html" class="btn style1">Savatga qo'shish <i class="flaticon-shopping-cart"></i></a>
+                                                <a href="<?=yii\helpers\Url::to(['cart/add', 'id' => $model->id])?>" data-id="<?= $model->id ?>" class="btn style1 add-to-cart">Savatga qo'shish <i class="flaticon-shopping-cart"></i></a>
                                             </div>
                                         </div>
                                         <div class="product-more-option-item">
@@ -255,7 +255,7 @@ $this->title = $model->name;
                                                     <p class="product-price"><?= number_format($product->price , '0', ' ', ' ') ?> so'm</p>
                                                 <?php endif; ?>
                                             </div>
-                                            <a class="add-to-cart" href="#">
+                                            <a class="add-to-cart" href="<?=yii\helpers\Url::to(['cart/add', 'id' => $product->id])?>" data-id="<?= $product->id ?>">
                                                 <i class="ri-shopping-cart-2-line"></i>
                                             </a>
                                         </div>
@@ -303,7 +303,7 @@ $this->title = $model->name;
                                                     <p class="product-price"><?= number_format($additionalProduct->price , '0', ' ', ' ') ?> so'm</p>
                                                 <?php endif; ?>
                                             </div>
-                                            <a class="add-to-cart" href="#">
+                                            <a class="add-to-cart" href="<?=yii\helpers\Url::to(['cart/add', 'id' => $additionalProduct->id])?>" data-id="<?= $additionalProduct->id ?>">
                                                 <i class="ri-shopping-cart-2-line"></i>
                                             </a>
                                         </div>
@@ -351,7 +351,7 @@ $this->title = $model->name;
                                                     <p class="product-price"><?= number_format($recentProduct->price , '0', ' ', ' ') ?> so'm</p>
                                                 <?php endif; ?>
                                             </div>
-                                            <a class="add-to-cart" href="#">
+                                            <a class="add-to-cart" data-id="<?= $recentProduct->id ?>" href="<?=yii\helpers\Url::to(['cart/add', 'id' => $recentProduct->id])?>">
                                                 <i class="ri-shopping-cart-2-line"></i>
                                             </a>
                                         </div>

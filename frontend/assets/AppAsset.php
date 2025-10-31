@@ -13,6 +13,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css",
+        "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css",
         'css/bootstrap.min.css',
         'css/flaticon.css',
         'css/remixicon.css',
@@ -28,6 +29,7 @@ class AppAsset extends AssetBundle
     public $js = [
         "js/email-decode.min.js",
         'js/jquery.min.js',
+        "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js",
         "https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.9/jquery.inputmask.min.js",
         'js/bootstrap.bundle.min.js',
         'js/form-validator.min.js',

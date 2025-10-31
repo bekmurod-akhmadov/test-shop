@@ -2,7 +2,7 @@
 namespace frontend\controllers;
 
 use common\models\Product;
-use common\models\Comment;
+use common\models\ProductCategory;
 use Yii;
 use yii\web\Controller;
 use yii\data\Pagination;
@@ -75,9 +75,11 @@ class ProductController extends Controller
             ->limit($pagination->limit)
             ->all();
 
+        $category = ProductCategory::findOne(['id' => $id,'status' => ProductCategory::STATUS_ACTIVE]);
         return $this->render('category', [
             'models' => $models,
-            'pagination' => $pagination
+            'pagination' => $pagination,
+            'category' => $category
         ]);
     }
 

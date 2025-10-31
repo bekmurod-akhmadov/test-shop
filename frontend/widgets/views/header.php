@@ -1,5 +1,7 @@
 <?php
-use yii\bootstrap5\LinkPager;
+
+use yii\widgets\Pjax;
+
 ?>
 <!-- Header Section Start -->
 <header class="header-wrap style1">
@@ -46,15 +48,16 @@ use yii\bootstrap5\LinkPager;
                         </div>
                         <div class="user-menu">
 
-                            <span><img src="/img/user.jpg" alt="Image"><?= Yii::$app->user->isGuest ? 'Mijoz' : Yii::$app->user->identity->username ?></span>
+                            <span><img src="/img/user.jpg"
+                                       alt="Image"><?= Yii::$app->user->isGuest ? 'Mijoz' : Yii::$app->user->identity->username ?></span>
                             <ul class="list-style">
-                                <li><a href="<?=yii\helpers\Url::to(['client/profile'])?>">Profil</a></li>
-                                <li><a href="<?=yii\helpers\Url::to(['client/orders'])?>">Savatcha</a></li>
+                                <li><a href="<?= yii\helpers\Url::to(['client/profile']) ?>">Profil</a></li>
+                                <li><a href="<?= yii\helpers\Url::to(['cart/index']) ?>">Savatcha</a></li>
                                 <li><a href="wishlist.html">Yoqtirganlarim</a></li>
-                                <?php if(!Yii::$app->user->isGuest) { ?>
-                                <li><a href="<?=yii\helpers\Url::to(['client/logout'])?>">Chiqish</a></li>
+                                <?php if (!Yii::$app->user->isGuest) { ?>
+                                    <li><a href="<?= yii\helpers\Url::to(['client/logout']) ?>">Chiqish</a></li>
                                 <?php } else { ?>
-                                <li><a href="<?=yii\helpers\Url::to(['client/login'])?>">Kirish</a></li>
+                                    <li><a href="<?= yii\helpers\Url::to(['client/login']) ?>">Kirish</a></li>
                                 <?php } ?>
                             </ul>
                         </div>
@@ -67,7 +70,7 @@ use yii\bootstrap5\LinkPager;
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xxl-2 col-xl-3">
-                    <a class="navbar-brand" href="<?=yii\helpers\Url::home()?>">
+                    <a class="navbar-brand" href="<?= yii\helpers\Url::home() ?>">
                         <img src="/img/logo.png" alt="logo">
                     </a>
                 </div>
@@ -78,20 +81,22 @@ use yii\bootstrap5\LinkPager;
                     </form>
                 </div>
                 <div class="col-xxl-2 col-xl-3">
+
                     <div class="user-option">
-                        <div class="shopcart">
+                        <div class="shopcart" id="cart-icon">
                             <i class="flaticon-shopping-cart"></i>
-                            <span>1</span>
+                            <span class="cart-count"><?=common\components\StaticFunctions::getCartCount()?? '0' ?></span>
                         </div>
                         <a class="wishlist-btn" href="wishlist.html">
                             <i class="flaticon-heart-1"></i>
-                            <span>1</span>
+                            <span class="wishlist-count"><?=common\components\StaticFunctions::getWishlistCount()?? '0' ?></span>
                         </a>
                         <a class="compare-btn" href="compare.html">
                             <i class="flaticon-compare"></i>
                             <span>1</span>
                         </a>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -102,7 +107,10 @@ use yii\bootstrap5\LinkPager;
                 <button type="button" class="close-option"><i class="ri-close-line"></i></button>
                 <ul class="contact-info list-style">
                     <li><i class="flaticon-phone-call"></i><a href="tel:70033344555">+(700) 333 44 555</a></li>
-                    <li><i class="flaticon-email-2"></i><a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#c0a9aea6af80b2afa1aeeea3afad"><span class="__cf_email__" data-cfemail="157c7b737a55677a747b3b767a78">[email&#160;protected]</span></a></li>
+                    <li><i class="flaticon-email-2"></i><a
+                                href="https://templates.envytheme.com/cdn-cgi/l/email-protection#c0a9aea6af80b2afa1aeeea3afad"><span
+                                    class="__cf_email__" data-cfemail="157c7b737a55677a747b3b767a78">[email&#160;protected]</span></a>
+                    </li>
                 </ul>
             </div>
             <nav class="navbar navbar-expand-md">
@@ -114,24 +122,28 @@ use yii\bootstrap5\LinkPager;
                         <a href="javascript:void(0)"> <i class="ri-close-line"></i></a>
                     </div>
                     <ul class="navbar-nav me-auto">
-                        
+
                         <li class="nav-item">
-                            <a href="<?=yii\helpers\Url::home()?>" class="nav-link">Asosiy</a>
+                            <a href="<?= yii\helpers\Url::home() ?>" class="nav-link">Asosiy</a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?=yii\helpers\Url::to(['product/index'])?>" class="nav-link">Mahsulotlar</a>
+                            <a href="<?= yii\helpers\Url::to(['product/index']) ?>" class="nav-link">Mahsulotlar</a>
                         </li>
-                        
+
                         <li class="nav-item">
-                            <a href="<?=yii\helpers\Url::to(['product/discount'])?>" class="nav-link">Aksiyadagi mahsulotlar</a>
+                            <a href="<?= yii\helpers\Url::to(['product/discount']) ?>" class="nav-link">Aksiyadagi
+                                mahsulotlar</a>
                         </li>
-                       
-                        
+
+
                     </ul>
                     <div class="others-options lg-none">
                         <ul class="contact-info list-style">
                             <li><i class="flaticon-phone-call"></i><a href="tel:70033344555">+(700) 333 44 555</a></li>
-                            <li><i class="flaticon-email-2"></i><a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#fb92959d94bb89949a95d5989496"><span class="__cf_email__" data-cfemail="51383f373e11233e303f7f323e3c">[email&#160;protected]</span></a></li>
+                            <li><i class="flaticon-email-2"></i><a
+                                        href="https://templates.envytheme.com/cdn-cgi/l/email-protection#fb92959d94bb89949a95d5989496"><span
+                                            class="__cf_email__" data-cfemail="51383f373e11233e303f7f323e3c">[email&#160;protected]</span></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -177,61 +189,37 @@ use yii\bootstrap5\LinkPager;
     </div>
 </header>
 
- <div class="cart-popup">
-                <button type="button" class="close-cart-popup"><i class="ri-close-fill"></i></button>
-                <div class="cart-popup-body">
-                    <div class="cart-item">
-                        <div class="cart-item-img">
-                            <img src="/img/products/product-thumb-1.png" alt="Image">
-                        </div>
-                        <div class="cart-item-info">
-                            <h5><a href="shop-details.html">Fresh Almonds</a></h5>
-                            <p>$35</p>
-                        </div>
-                        <div class="cart-item-action">
-                            <button class="delete-cart-item">
-                                <i class="ri-close-circle-fill"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="cart-item">
-                        <div class="cart-item-img">
-                            <img src="/img/products/product-thumb-2.png" alt="Image">
-                        </div>
-                        <div class="cart-item-info">
-                            <h5><a href="shop-details.html">Natural Honey</a></h5>
-                            <p>$120</p>
-                        </div>
-                        <div class="cart-item-action">
-                            <button class="delete-cart-item">
-                                <i class="ri-close-circle-fill"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="cart-item">
-                        <div class="cart-item-img">
-                            <img src="/img/products/product-thumb-3.png" alt="Image">
-                        </div>
-                        <div class="cart-item-info">
-                            <h5><a href="shop-details.html">Organic Onions</a></h5>
-                            <p>$45/Kg</p>
-                        </div>
-                        <div class="cart-item-action">
-                            <button class="delete-cart-item">
-                                <i class="ri-close-circle-fill"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="cart-popup-footer">
-                    <div class="total-amt">
-                        <h5>Total Payable</h5>
-                        <h5>$178.00</h5>
-                    </div>
-                    <div class="cart-popup-btn">
-                        <a href="cart.html" class="btn style1">View Cart</a>
-                        <a href="checkout.html" class="btn style3">Checkout</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Header Section End -->
+<div class="cart-popup">
+    <button type="button" class="close-cart-popup"><i class="ri-close-fill"></i></button>
+    <div id="cart-modal">
+        
+    </div>
+
+</div>
+
+<style>
+.toast-success {
+    background-color: #28a745 !important; /* bg-success */
+    color: #fff !important;
+    opacity: 100%;
+}
+
+.toast-error {
+    background-color: #dc3545 !important; /* bg-danger */
+    color: #fff !important;
+}
+
+.toast-info {
+    background-color: #17a2b8 !important; /* bg-info */
+    color: #fff !important;
+}
+
+.toast-warning {
+    background-color: #ffc107 !important; /* bg-warning */
+    color: #212529 !important;
+}
+
+#toast-container {
+    top: 150px !important; /* Toastrni pastroqqa tushiradi */
+}
+</style>

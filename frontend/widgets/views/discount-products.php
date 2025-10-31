@@ -4,8 +4,7 @@
         <div class="row align-items-end mb-40">
             <div class="col-lg-6">
                 <div class="content-title">
-                    <span><i class="flaticon-orange"></i>HOT DEALS</span>
-                    <h2>Best Deals Of The Week</h2>
+                    <h2>Aksiyadagi mahsulotlar</h2>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -43,7 +42,7 @@
                                     <p class="product-price"><?= number_format($model->price , '0', ' ', ' ') ?> so'm</p>
                                 <?php endif; ?>
                             </div>
-                            <a class="add-to-cart" href="#">
+                            <a class="add-to-cart" data-id="<?= $model->id ?>" href="<?=yii\helpers\Url::to(['cart/add', 'id' => $model->id])?>">
                                 <i class="ri-shopping-cart-2-line"></i>
                             </a>
                         </div>
