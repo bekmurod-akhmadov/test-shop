@@ -263,6 +263,9 @@ class StaticFunctions {
     }
 
     public static function getCartCount(){
+        if(Yii::$app->user->isGuest)
+            return 0;
+        
         $user_id = Yii::$app->user->identity->id;
         $models = Cart::find()->where(['client_id'=>$user_id])->all();
         $count = 0;
@@ -273,12 +276,11 @@ class StaticFunctions {
     }
 
     public static function getWishlistCount(){
+        if(Yii::$app->user->isGuest)
+            return 0;
+        
         $user_id = Yii::$app->user->identity->id;
-        $models = Wishlist::find()->where(['client_id'=>$user_id])->all();
-        $count = 0;
-        foreach ($models as $model){
-            $count += $model->qty;
-        }
+        $count = Wishlist::find()->where(['client_id'=>$user_id])->count();
         return $count;
     }
 }

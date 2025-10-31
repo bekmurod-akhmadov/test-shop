@@ -17,7 +17,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="<?=yii\helpers\Url::to(['cart/index'])?>">
+                                        <a href="<?=yii\helpers\Url::to([''])?>">
                                             <i class="flaticon-next"></i>
                                             Savatcha
                                         </a>

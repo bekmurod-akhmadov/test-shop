@@ -119,4 +119,12 @@ class Product extends \yii\db\ActiveRecord
         return StaticFunctions::getImage($this, 'product', 'image');
     }
 
+    public function isWishlist()
+    {
+        if(Yii::$app->user->isGuest) 
+            return false;
+        
+        return Wishlist::find()->where(['product_id' => $this->id, 'client_id' => Yii::$app->user->identity->id])->exists();
+    }
+
 }

@@ -24,11 +24,11 @@
                             <?php if ($model->discount_price) : ?>
                             <span class="bg bg-danger promo-text style1">Sale</span>
                             <?php endif; ?>
-                            <button class="add-to-wishlist"><i class="flaticon-heart-1"></i><i class="flaticon-heart"></i></button>
+                            <a class="add-to-wishlist <?= $model->isWishlist() ? 'added' : '' ?>" data-id="<?= $model->id ?>" href="<?=yii\helpers\Url::to(['cart/add-to-wishlist', 'id' => $model->id])?>" ><i class="flaticon-heart-1"></i><i class="flaticon-heart"></i></a>
                         </div>
                         <div class="product-info-wrap">
                             <div class="product-info">
-                                <h3><a href="shop-details.html"><?= $model->name ?></a></h3>
+                                <h3><a href="<?=yii\helpers\Url::to(['product/view', 'id' => $model->id])?>"><?= $model->name ?></a></h3>
                                 <div class="ratings">
                                     <?php if ($model->in_stock) : ?>
                                     <span class="badge bg bg-success promo-text text-light style1">Sotuvda mavjud</span>

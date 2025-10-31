@@ -53,7 +53,7 @@ use yii\widgets\Pjax;
                             <ul class="list-style">
                                 <li><a href="<?= yii\helpers\Url::to(['client/profile']) ?>">Profil</a></li>
                                 <li><a href="<?= yii\helpers\Url::to(['cart/index']) ?>">Savatcha</a></li>
-                                <li><a href="wishlist.html">Yoqtirganlarim</a></li>
+                                <li><a href="<?= yii\helpers\Url::to(['cart/wishlist']) ?>">Yoqtirganlarim</a></li>
                                 <?php if (!Yii::$app->user->isGuest) { ?>
                                     <li><a href="<?= yii\helpers\Url::to(['client/logout']) ?>">Chiqish</a></li>
                                 <?php } else { ?>
@@ -87,7 +87,7 @@ use yii\widgets\Pjax;
                             <i class="flaticon-shopping-cart"></i>
                             <span class="cart-count"><?=common\components\StaticFunctions::getCartCount()?? '0' ?></span>
                         </div>
-                        <a class="wishlist-btn" href="wishlist.html">
+                        <a class="wishlist-btn" href="<?= yii\helpers\Url::to(['cart/wishlist']) ?>">
                             <i class="flaticon-heart-1"></i>
                             <span class="wishlist-count"><?=common\components\StaticFunctions::getWishlistCount()?? '0' ?></span>
                         </a>

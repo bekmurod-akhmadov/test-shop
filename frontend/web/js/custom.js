@@ -121,14 +121,49 @@ $(document).ready(function() {
     })
     
     setInterval(function () {
-    $.ajax({
-        url: '/cart/count',
-        type: 'GET',
-        success: function (data) {
-            if(data.status){
-                $('.cart-count').text(data.result);
+        $.ajax({
+            url: '/cart/count',
+            type: 'GET',
+            success: function (data) {
+                if(data.status){
+                    $('.cart-count').text(data.result);
+                }
             }
-        }
-    });
-}, 1000);
+        });
+    }, 1000);
+
+
+    //Wishlistga qo'shish
+    $(".add-to-wishlist").on('click',function (e) {
+        e.preventDefault();
+        let id = $(this).data('id');
+        $.ajax({
+            method : 'GET',
+            url : '/cart/add-to-wishlist',
+            data : {id:id},
+            success : function (data) {
+                if(data.status){
+                    toastr.success(data.message);
+                }else{
+                    toastr.error(data.message);
+                }
+            },
+
+            error : function () {
+                toastr.error('Error');
+            }
+        })
+    })
+
+    setInterval(function () {
+        $.ajax({
+            url: '/cart/wishlist-count',
+            type: 'GET',
+            success: function (data) {
+                if(data.status){
+                    $('.wishlist-count').text(data.result);
+                }
+            }
+        });
+    }, 1000);
 });

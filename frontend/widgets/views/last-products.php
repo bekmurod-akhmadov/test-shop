@@ -21,7 +21,7 @@
                         <?php if ($model->discount_price) : ?>
                         <span class="bg bg-danger promo-text style1">Sale</span>
                         <?php endif; ?>
-                        <button class="add-to-wishlist"><i class="flaticon-heart-1"></i><i class="flaticon-heart"></i></button>
+                        <a class="add-to-wishlist <?= $model->isWishlist() ? 'added' : '' ?>" data-id="<?= $model->id ?>" href="<?=yii\helpers\Url::to(['cart/add-to-wishlist', 'id' => $model->id])?>" ><i class="flaticon-heart-1"></i><i class="flaticon-heart"></i></a>
                     </div>
                     <div class="product-info-wrap">
                         <div class="product-info">

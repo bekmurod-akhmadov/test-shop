@@ -70,5 +70,4 @@ class Wishlist extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Product::class, ['id' => 'product_id']);
     }
-
 }
