@@ -40,10 +40,34 @@ $this->params['breadcrumbs'][] = $this->title;
             //'access_token',
             //'status',
             [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Client $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                'class' => \yii\grid\ActionColumn::className(),
+                'template' => '{view} {update} {delete}', // qaysi tugmalar chiqishini belgilaydi
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    return \yii\helpers\Url::to([$action, 'id' => $model->id]);
+                },
+                'buttons' => [
+                    'view' => function ($url, $model) {
+                        return \yii\helpers\Html::a('<i class="fa fa-eye"></i>', $url, [
+                            'class' => 'btn btn-sm btn-info',
+                            'title' => 'Ko‘rish',
+                        ]);
+                    },
+                    'update' => function ($url, $model) {
+                        return \yii\helpers\Html::a('<i class="fa fa-edit"></i>', $url, [
+                            'class' => 'btn btn-sm btn-warning',
+                            'title' => 'Tahrirlash',
+                        ]);
+                    },
+                    'delete' => function ($url, $model) {
+                        return \yii\helpers\Html::a('<i class="fa fa-trash"></i>', $url, [
+                            'class' => 'btn btn-sm btn-danger',
+                            'title' => 'O‘chirish',
+                            'data-confirm' => 'Haqiqatan ham o‘chirilsinmi?',
+                            'data-method' => 'post',
+                        ]);
+                    },
+                ],
+                'contentOptions' => ['class' => 'text-center v-align-middle', 'style' => 'white-space: nowrap;'],
             ],
         ],
     ]); ?>

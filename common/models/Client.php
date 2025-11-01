@@ -127,4 +127,9 @@ class Client extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         }
         return $list;
     }
+
+    public function getFullName()
+    {
+        return $this->first_name.' '.$this->last_name;
+    }
 }

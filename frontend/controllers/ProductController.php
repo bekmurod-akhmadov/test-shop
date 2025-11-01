@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use common\models\Product;
 use common\models\ProductCategory;
+use common\models\Comment;
 use Yii;
 use yii\web\Controller;
 use yii\data\Pagination;
@@ -53,12 +54,29 @@ class ProductController extends Controller
             ->limit(20)
             ->all();
 
+        $comments = Comment::find()
+            ->where(['product_id' => $model->id,'status' => Comment::STATUS_ACCEPT])
+            ->all();
+        $commentModel =  new Comment();  
+        if(Yii::$app->request->isPost){
+            $commentModel->load(Yii::$app->request->post());
+            $commentModel->product_id = $model->id;
+            $commentModel->client_id = Yii::$app->user->identity->id;
+            $commentModel->status = Comment::STATUS_MODERATION;
+            $commentModel->created_at = date('Y-m-d H:i:s');
+            if($commentModel->save()){
+                Yii::$app->session->setFlash('success', 'Izoh qoldirildi');
+                return $this->refresh();
+            }
+        }  
 
         return $this->render('view', [
             'model' => $model,
             'recentProducts' => $recentProducts,
             'relatedProducts' => $relatedProducts,
             'additionalProducts' => $additionalProducts,
+            'comments' => $comments,
+            'commentModel' => $commentModel,
         ]);
     }
 

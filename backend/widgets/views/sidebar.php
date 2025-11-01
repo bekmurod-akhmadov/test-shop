@@ -83,6 +83,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="<?=\yii\helpers\Url::to(['/order/index'])?>" class="nav-link <?=in_array(Yii::$app->controller->id , ['order']) ? 'active' : ''?>">
+                        <i class="nav-icon fas fa-shopping-cart"></i>
+                        <p>Buyurtmalar</p>
+                    </a>
+                </li>
+
                 <?php if(Yii::$app->user->can('admin')): ?>
 
                     <li class="nav-item">

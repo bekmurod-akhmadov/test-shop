@@ -1,4 +1,8 @@
 <?php
+
+use yii\bootstrap5\ActiveForm;
+use yii\helpers\Url;
+
 $this->title = $model->name;
 ?>
 <!-- Page Wrapper End -->
@@ -151,6 +155,8 @@ $this->title = $model->name;
                                     </div>
                                     <div class="tab-pane fade" id="tab_3" role="tabpanel">
                                         <div class="client-review comment-item-wrap">
+                                            <?php if(!empty($comments)) : ?>
+                                            <?php foreach ($comments as $comment) : ?>
                                             <div class="comment-item">
                                                 <div class="comment-author-img">
                                                     <i style="font-size: 50px;" class="fas fa-user"></i>
@@ -159,58 +165,62 @@ $this->title = $model->name;
                                                     <div class="comment-author-info">
                                                         <div class="row align-items-start">
                                                             <div class="comment-author-name">
-                                                                <h5>Eliie Andrews</h5>
-                                                                <span>06 Dec, 2021</span>
-                                                                <ul class="list-style rating">
-                                                                    <li><i class="ri-star-fill"></i></li>
-                                                                    <li><i class="ri-star-fill"></i></li>
-                                                                    <li><i class="ri-star-fill"></i></li>
-                                                                    <li><i class="ri-star-fill"></i></li>
-                                                                    <li><i class="ri-star-fill"></i></li>
-                                                                </ul>
+                                                                <h5><?=$comment->client->getFullName() ?? $comment->client->username ?></h5>
+                                                                <span><?=date('d M, Y | H:i', strtotime($comment->created_at))?></span>
+                                                                
                                                             </div>
                                                             <div class="comment-text">
-                                                                <p>Lorem ipsum dolor sit amet sectetur adipiscin elit cras feuiat antesed ces condimentum viverra duis autue nim convallis id diam vitae duis edictumojp erosi dictum sem. Vivamus sed molestie sapien aliquam et facilisis arcu dut.
-                                                                </p>
+                                                                <p><?=$comment->comment?></p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <?php endforeach; ?>
+                                            <?php endif; ?>
                                         </div>
+                                        <?php if(!Yii::$app->user->isGuest): ?>
                                         <div class="client-review-form">
                                             <div class="comment-form-title">
-                                                <h4>Add A Review</h4>
+                                                <h4>Izoh qoldirish</h4>
                                             </div>
-                                            <form action="#" class="comment-form">
+                                            <?php $form = yii\bootstrap5\ActiveForm::begin([
+                                                'class' => 'comment-form',
+                                                'action' => yii\helpers\Url::to(['product/view', 'id' => $model->id]),
+                                            ]); ?>
                                                 <div class="row gx-3">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <textarea name="review-msg" id="review-msg" cols="30" rows="10" placeholder="Your comments..."></textarea>
+                                                            <?=$form->field($commentModel, 'comment')->textarea(['rows' => 6])?>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group s1">
-                                                            <input type="text" placeholder="Your  Full Name*">
+                                                            <?=$form->field($commentModel, 'fullName')->textInput([
+                                                                'value' => Yii::$app->user->identity->getFullName(),
+                                                                'readonly' => true,
+                                                            ]) ?>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group s2">
-                                                            <input type="email" placeholder="Email Address*">
+                                                            <?=$form->field($commentModel, 'email')->textInput([
+                                                                'value' => Yii::$app->user->identity->email,
+                                                                'readonly' => true,
+                                                            ]) ?>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" id="test_1">
-                                                            <label for="test_1">
-                                                                I Agree with the <a class="link style1" href="terms-of-service.html">Terms &amp; conditions</a>
-                                                            </label>
+                                                        <div class="form-group">
+                                                            <?=yii\helpers\Html::submitButton('Qo`shish', ['class' => 'btn btn-success']) ?>
                                                         </div>
-                                                        <button class="btn style1 mt-25">Submit Review </button>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            <?php yii\bootstrap5\ActiveForm::end(); ?>
                                         </div>
+                                        <?php else: ?>
+                                            <p>Izoh qoldirish uchun tizimga <a href="<?=yii\helpers\Url::to(['site/login'])?>">Kirish</a> yoki <a href="<?=yii\helpers\Url::to(['site/signup'])?>">Ro'yxatdan o'tish</a> kerak</p>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>

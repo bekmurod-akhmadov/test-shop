@@ -8,6 +8,8 @@ use frontend\models\RegisterForm;
 use common\models\Client;
 use common\models\Address;
 use frontend\models\SignupForm;
+use common\models\Order;
+use common\models\OrderItem;
 
 class ClientController extends Controller
 {
@@ -129,7 +131,26 @@ class ClientController extends Controller
             return $this->redirect('login');
         }
 
-        return $this->render('my-orders');
+        $models = Order::find()->where(['client_id' => Yii::$app->user->identity->id])->all();
+
+        return $this->render('my-orders', [
+            'models' => $models
+        ]);
+    }
+
+    public function actionOrderView($id)
+    {
+        if(Yii::$app->user->isGuest){
+            return $this->redirect('login');
+        }
+
+        $models = OrderItem::find()->where(['order_id' => $id])->all();
+        $order  = Order::findOne($id);
+
+        return $this->render('order-item', [
+            'models' => $models,    
+            'order' => $order
+        ]);
     }
 
     public function actionLogout(){
