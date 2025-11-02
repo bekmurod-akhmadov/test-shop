@@ -114,5 +114,4 @@ return [
     'Qabul qilindi' => "Принято",
     'Bekor qilindi' => "Отменено",
     'Mening izohlarim' => "Мои отзывы",
-
 ];

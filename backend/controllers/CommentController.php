@@ -6,7 +6,8 @@ use common\models\Comment;
 use common\models\CommentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use Yii;
 
 /**
  * CommentController implements the CRUD actions for Comment model.
@@ -18,17 +19,23 @@ class CommentController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->role === 'admin';
+                        }
                     ],
                 ],
-            ]
-        );
+                'denyCallback' => function ($rule, $action) {
+                    return Yii::$app->response->redirect(['/site/login']);
+                },
+            ],
+        ];
     }
 
     /**
