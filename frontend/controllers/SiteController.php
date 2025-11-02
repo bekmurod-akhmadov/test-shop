@@ -256,4 +256,11 @@ class SiteController extends Controller
             'model' => $model
         ]);
     }
+
+    public function actionLanguage($lang)
+    {
+        Yii::$app->language = $lang;
+        Yii::$app->session->set('language', $lang);
+        return $this->goHome();
+    }
 }

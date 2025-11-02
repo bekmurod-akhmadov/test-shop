@@ -1,5 +1,5 @@
 <?php
-$this->title = "Buyurtmalarim";
+$this->title = Yii::t('app', 'Buyurtmalarim');
 use frontend\widgets\ProfileSidebr;
 ?>
 <!-- Content Wrapper Start -->
@@ -11,10 +11,10 @@ use frontend\widgets\ProfileSidebr;
             <div class="row align-items-center">
                 <div class="col-md-7 col-sm-8">
                     <div class="breadcrumb-title">
-                        <h2>Buyurtmalarim</h2>
+                        <h2><?= Yii::t('app', 'Buyurtmalarim') ?></h2>
                         <ul class="breadcrumb-menu list-style">
-                            <li><a href="<?=yii\helpers\Url::home()?>">Asosiy </a></li>
-                            <li>Buyurtmalarim</li>
+                            <li><a href="<?=yii\helpers\Url::home()?>"><?= Yii::t('app', 'Asosiy') ?> </a></li>
+                            <li><?= Yii::t('app', 'Buyurtmalarim') ?></li>
                         </ul>
                     </div>
                 </div>
@@ -41,12 +41,12 @@ use frontend\widgets\ProfileSidebr;
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Buyurtma raqami</th>
-                                                <th scope="col">Buyurtma sana</th>
-                                                <th scope="col">Jami Summa</th>
-                                                <th scope="col">Jami Soni</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Qo'shimcha</th>
+                                                <th scope="col"><?= Yii::t('app', 'Buyurtma raqami') ?></th>
+                                                <th scope="col"><?= Yii::t('app', 'Buyurtma sana') ?></th>
+                                                <th scope="col"><?= Yii::t('app', 'Jami Summa') ?></th>
+                                                <th scope="col"><?= Yii::t('app', 'Jami Soni') ?></th>
+                                                <th scope="col"><?= Yii::t('app', 'Status') ?></th>
+                                                <th scope="col"><?= Yii::t('app', 'Qo`shimcha') ?></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -57,18 +57,18 @@ use frontend\widgets\ProfileSidebr;
                                                 <td><?=number_format($model->total_price, 0, ',', ' ')?> So`m</td>
                                                 <td><?=$model->total_count?></td>
                                                 <td><?php if($model->status == $model::STATUS_NEW){
-                                                    echo 'Yangi';
+                                                    echo Yii::t('app', 'Yangi');
                                                 }elseif($model->status == $model::STATUS_PAID){
-                                                    echo "Yig'ilmoqda";
+                                                    echo Yii::t('app', 'Yig`ilmoqda');
                                                 }elseif($model->status == $model::STATUS_SHIPPED){
-                                                    echo 'Yuborildi';
+                                                    echo Yii::t('app', 'Yuborildi');
                                                 }elseif($model->status == $model::STATUS_DELIVERED){
-                                                    echo 'Yetkazildi';
+                                                    echo Yii::t('app', 'Yetkazildi');
                                                 }elseif($model->status == $model::STATUS_CANCELLED){
-                                                    echo 'Bekor qilindi';
+                                                    echo Yii::t('app', 'Bekor qilindi');
                                                 }?></td>
                                                 <td>
-                                                    <a href="<?=yii\helpers\Url::toRoute(['client/order-view', 'id' => $model->id])?>" class="btn style1">Buyurtmani ko'rish</a>
+                                                    <a href="<?=yii\helpers\Url::toRoute(['client/order-view', 'id' => $model->id])?>" class="btn style1"><?= Yii::t('app', 'Buyurtmani ko`rish') ?></a>
                                                 </td>
                                             </tr>
                                             <?php endforeach; ?>

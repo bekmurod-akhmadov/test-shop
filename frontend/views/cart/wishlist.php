@@ -7,10 +7,10 @@
                     <div class="row align-items-center">
                         <div class="col-md-7 col-sm-8">
                             <div class="breadcrumb-title">
-                                <h2>Yoqtirganlarim</h2>
+                                <h2><?= Yii::t('app', 'Yoqtirganlarim') ?></h2>
                                 <ul class="breadcrumb-menu list-style">
-                                    <li><a href="<?=yii\helpers\Url::to(['site/index'])?>">Asosiy </a></li>
-                                    <li>Yoqtirganlarim</li>
+                                    <li><a href="<?=yii\helpers\Url::to(['site/index'])?>"><?= Yii::t('app', 'Asosiy') ?> </a></li>
+                                    <li><?= Yii::t('app', 'Yoqtirganlarim') ?></li>
                                 </ul>
                             </div>
                         </div>
@@ -33,11 +33,11 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Mahsulot</th>
-                                                <th scope="col">Narxi</th>
-                                                <th scope="col">Mavudligi</th>
-                                                <th scope="col">Savatga qo'shish</th>
-                                                <th scope="col">O'chirish</th>
+                                                <th scope="col"><?= Yii::t('app', 'Mahsulot') ?></th>
+                                                <th scope="col"><?= Yii::t('app', 'Narxi') ?></th>
+                                                <th scope="col"><?= Yii::t('app', 'Mavudligi') ?></th>
+                                                <th scope="col"><?= Yii::t('app', 'Savatga qo`shish') ?></th>
+                                                <th scope="col"><?= Yii::t('app', 'O`chirish') ?></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -56,20 +56,20 @@
                                                 </td>
                                                 <td>
                                                     <?php if ($model->product->discount_price) : ?>
-                                                        <p class="product-price"><span class="discount"><?= number_format($model->product->price , '0', ' ', ' ') ?> so'm</span><?= number_format($model->product->discount_price , '0', ' ', ' ') ?> so'm</p>
+                                                        <p class="product-price"><span class="discount"><?= number_format($model->product->price , '0', ' ', ' ') ?> <?= Yii::t('app', 'so`m') ?></span><?= number_format($model->product->discount_price , '0', ' ', ' ') ?> <?= Yii::t('app', 'so`m') ?></p>
                                                     <?php else : ?>
-                                                        <p class="product-price"><?= number_format($model->product->price , '0', ' ', ' ') ?> so'm</p>
+                                                        <p class="product-price"><?= number_format($model->product->price , '0', ' ', ' ') ?> <?= Yii::t('app', 'so`m') ?></p>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td>
                                                     <?php if ($model->product->in_stock) : ?>
-                                                    <span class="badge bg bg-success promo-text text-light style1">Sotuvda mavjud</span>
+                                                    <span class="badge bg bg-success promo-text text-light style1"><?= Yii::t('app', 'Sotuvda mavjud') ?></span>
                                                     <?php else : ?>
-                                                    <span class="badge bg bg-danger promo-text text-light style1">Sotuvda mavjud emas</span>
+                                                    <span class="badge bg bg-danger promo-text text-light style1"><?= Yii::t('app', 'Sotuvda mavjud emas') ?></span>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td> 
-                                                    <a class="btn style1 add-to-cart" data-id="<?= $model->product->id ?>" href="<?= yii\helpers\Url::to(['cart/add','id'=>$model->product->id]) ?>">Savatga qo'shish<i class="flaticon-shopping-cart"></i></a>
+                                                    <a class="btn style1 add-to-cart" data-id="<?= $model->product->id ?>" href="<?= yii\helpers\Url::to(['cart/add','id'=>$model->product->id]) ?>"><?= Yii::t('app', 'Savatga qo`shish') ?><i class="flaticon-shopping-cart"></i></a>
                                                 </td>
                                                 <td>
                                                     <a href="<?= yii\helpers\Url::to(['cart/wishlist-remove','id'=>$model->product->id]) ?>" class="cart-action" type="button">

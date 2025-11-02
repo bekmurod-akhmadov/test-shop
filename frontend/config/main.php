@@ -10,6 +10,7 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'uz',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
@@ -37,6 +38,20 @@ return [
             'errorAction' => 'site/error',
         ],
 
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@frontend/messages',
+                    //'sourceLanguage' => 'en-US',
+                    'fileMap' => [
+                        'app'       => 'app.php',
+                        'app/error' => 'error.php',
+                    ],
+                ],
+            ],
+        ],
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -47,4 +62,9 @@ return [
         ],
     ],
     'params' => $params,
+
+    'on beforeAction' => function ($event) {
+        Yii::$app->language = Yii::$app->session->get('language', 'uz');
+    },
+
 ];

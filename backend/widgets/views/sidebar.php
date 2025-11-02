@@ -92,6 +92,13 @@
 
                 <?php if(Yii::$app->user->can('admin')): ?>
 
+                      <li class="nav-item">
+                        <a href="<?=\yii\helpers\Url::to(['/comment/index'])?>" class="nav-link <?=in_array(Yii::$app->controller->id , ['comment']) ? 'active' : ''?>">
+                            <i class="nav-icon fas fa-comment"></i>
+                            <p>Izohlar</p>
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a href="<?=\yii\helpers\Url::to(['/admin'])?>" class="nav-link <?=in_array(Yii::$app->controller->id , ['client']) ? 'active' : ''?>">
                             <i class="nav-icon fas fa-user"></i>

@@ -84,4 +84,16 @@ class Comment extends \yii\db\ActiveRecord
         return $this->hasOne(Product::class, ['id' => 'product_id']);
     }
 
+    public function getStatusName()
+    {
+        if($this->status == self::STATUS_MODERATION){
+            return '<span class="badge badge-warning bg-warning text-light">'. Yii::t('app', 'Moderatsiyada') .'</span>';
+        }elseif($this->status == self::STATUS_ACCEPT){
+            return '<span class="badge badge-success bg-success text-light">'. Yii::t('app', 'Qabul qilindi') .'</span>';
+        }elseif($this->status == self::STATUS_CANCELLED){
+            return '<span class="badge badge-danger bg-danger text-light">'. Yii::t('app', 'Bekor qilindi') .'</span>';
+        }
+
+    }
+
 }

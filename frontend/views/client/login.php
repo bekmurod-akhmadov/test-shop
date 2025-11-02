@@ -1,5 +1,5 @@
 <?php
-$this->title = "Kirish";
+$this->title = Yii::t('app', 'Kirish');
 use yii\bootstrap5\ActiveForm;
 use yii\helpers\Html;
 
@@ -7,16 +7,15 @@ use yii\helpers\Html;
 <!-- Content Wrapper Start -->
 <div class="content-wrapper">
 
-    <!-- Breadcrumb Start -->
     <div class="breadcrumb-wrap bg-f br-1">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-7 col-sm-8">
                     <div class="breadcrumb-title">
-                        <h2>Kirish</h2>
+                        <h2><?= Yii::t('app', 'Kirish') ?></h2>
                         <ul class="breadcrumb-menu list-style">
-                            <li><a href="<?=yii\helpers\Url::home()?>">Asosiy </a></li>
-                            <li>Kirish</li>
+                            <li><a href="<?=yii\helpers\Url::home()?>"><?= Yii::t('app', 'Asosiy') ?> </a></li>
+                            <li><?= Yii::t('app', 'Kirish') ?></li>
                         </ul>
                     </div>
                 </div>
@@ -37,7 +36,7 @@ use yii\helpers\Html;
                 <div class="col-lg-6 offset-lg-3">
                     <div class="login-form-wrap">
                         <div class="login-header">
-                            <h3>Kirish</h3>
+                            <h3><?= Yii::t('app', 'Kirish') ?></h3>
                         </div>
                         <div class="login-body">
                             <?php if (Yii::$app->session->hasFlash('success')): ?>
@@ -66,12 +65,12 @@ use yii\helpers\Html;
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <?= Html::submitButton('Kirish', ['class' => 'btn style1']) ?>
+                                        <?= Html::submitButton(Yii::t('app', 'Kirish'), ['class' => 'btn style1']) ?>
                                     </div>
                                 </div>
                             
                                 <div class="col-md-12 text-center">
-                                    <p class="mb-0">Ro'yhatdan <a class="link style1" href="<?=yii\helpers\Url::toRoute(['client/register'])?>"> o'tish</a></p>
+                                    <p class="mb-0"><?= Yii::t('app', 'Ro`yhatdan o`tish') ?> <a class="link style1" href="<?=yii\helpers\Url::toRoute(['client/register'])?>"> <?= Yii::t('app', 'o`tish') ?></a></p>
                                 </div>
                             </div>
                             <?php ActiveForm::end(); ?>

@@ -1,7 +1,4 @@
 <?php
-
-use yii\widgets\Pjax;
-
 ?>
 <!-- Header Section Start -->
 <header class="header-wrap style1">
@@ -10,54 +7,29 @@ use yii\widgets\Pjax;
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <div class="header-top-left">
-                        <p>Get 10% Discount For Your First Shipping</p>
+
+                        <p><?= Yii::t('app', 'Hello world') ?></p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="header-top-right">
                         <div class="select-lang">
-                            <i class="ri-global-line"></i>
-                            <div class="navbar-option-item navbar-language dropdown language-option">
-                                <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                    <span class="lang-name"></span>
-                                </button>
-                                <div class="dropdown-menu language-dropdown-menu">
-                                    <a class="dropdown-item" href="#">
-                                        <img src="/img/uk.png" alt="flag">
-                                        Eng
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <img src="/img/china.png" alt="flag">
-                                        简体中文
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <img src="/img/uae.png" alt="flag">
-                                        العربيّة
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="select-currency">
-                            <i class="ri-money-dollar-circle-line"></i>
-                            <select name="currency" id="currency">
-                                <option value="1">USD</option>
-                                <option value="2">EUR</option>
-                                <option value="3">CAD</option>
-                            </select>
+                            <a href="<?= yii\helpers\Url::to(['/site/language', 'lang' => 'uz']) ?>">O'zbekcha</a>
+                            <a href="<?= yii\helpers\Url::to(['/site/language', 'lang' => 'ru']) ?>">Русский</a>
                         </div>
                         <div class="user-menu">
 
                             <span><img src="/img/user.jpg"
                                        alt="Image"><?= Yii::$app->user->isGuest ? 'Mijoz' : Yii::$app->user->identity->username ?></span>
                             <ul class="list-style">
-                                <li><a href="<?= yii\helpers\Url::to(['client/profile']) ?>">Profil</a></li>
-                                <li><a href="<?= yii\helpers\Url::to(['cart/index']) ?>">Savatcha</a></li>
-                                <li><a href="<?= yii\helpers\Url::to(['cart/wishlist']) ?>">Yoqtirganlarim</a></li>
+                                <li><a href="<?= yii\helpers\Url::to(['client/profile']) ?>"><?= Yii::t('app', 'Profile') ?></a></li>
+                                <li><a href="<?= yii\helpers\Url::to(['client/my-orders']) ?>"><?= Yii::t('app', 'Buyurtmalarim') ?></a></li>
+                                <li><a href="<?= yii\helpers\Url::to(['cart/index']) ?>"><?= Yii::t('app', 'Savatcha') ?></a></li>
+                                <li><a href="<?= yii\helpers\Url::to(['cart/wishlist']) ?>"><?= Yii::t('app', 'Yoqtirganlarim') ?></a></li>
                                 <?php if (!Yii::$app->user->isGuest) { ?>
-                                    <li><a href="<?= yii\helpers\Url::to(['client/logout']) ?>">Chiqish</a></li>
+                                    <li><a href="<?= yii\helpers\Url::to(['client/logout']) ?>"><?= Yii::t('app', 'Chiqish') ?></a></li>
                                 <?php } else { ?>
-                                    <li><a href="<?= yii\helpers\Url::to(['client/login']) ?>">Kirish</a></li>
+                                    <li><a href="<?= yii\helpers\Url::to(['client/login']) ?>"><?= Yii::t('app', 'Kirish') ?></a></li>
                                 <?php } ?>
                             </ul>
                         </div>
@@ -76,7 +48,7 @@ use yii\widgets\Pjax;
                 </div>
                 <div class="col-xxl-8 col-xl-6">
                     <form action="#" class="search-box">
-                        <input type="search" placeholder="Search Your Item Here..">
+                        <input type="search" placeholder="<?=Yii::t('app', 'Qidirish') ?>">
                         <button type="submit"><i class="flaticon-search"></i></button>
                     </form>
                 </div>
@@ -90,10 +62,6 @@ use yii\widgets\Pjax;
                         <a class="wishlist-btn" href="<?= yii\helpers\Url::to(['cart/wishlist']) ?>">
                             <i class="flaticon-heart-1"></i>
                             <span class="wishlist-count"><?=common\components\StaticFunctions::getWishlistCount()?? '0' ?></span>
-                        </a>
-                        <a class="compare-btn" href="compare.html">
-                            <i class="flaticon-compare"></i>
-                            <span>1</span>
                         </a>
                     </div>
 
@@ -124,15 +92,14 @@ use yii\widgets\Pjax;
                     <ul class="navbar-nav me-auto">
 
                         <li class="nav-item">
-                            <a href="<?= yii\helpers\Url::home() ?>" class="nav-link">Asosiy</a>
+                            <a href="<?= yii\helpers\Url::home() ?>" class="nav-link"><?= Yii::t('app', 'Asosiy') ?></a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= yii\helpers\Url::to(['product/index']) ?>" class="nav-link">Mahsulotlar</a>
+                            <a href="<?= yii\helpers\Url::to(['product/index']) ?>" class="nav-link"><?= Yii::t('app', 'Mahsulotlar') ?></a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="<?= yii\helpers\Url::to(['product/discount']) ?>" class="nav-link">Aksiyadagi
-                                mahsulotlar</a>
+                            <a href="<?= yii\helpers\Url::to(['product/discount']) ?>" class="nav-link"><?= Yii::t('app', 'Aksiyadagi mahsulotlar') ?></a>
                         </li>
 
 
@@ -168,10 +135,7 @@ use yii\widgets\Pjax;
                     <i class="flaticon-heart-1"></i>
                     <span>1</span>
                 </a>
-                <a class="compare-btn" href="compare.html">
-                    <i class="flaticon-compare"></i>
-                    <span>1</span>
-                </a>
+               
             </div>
         </div>
     </div>

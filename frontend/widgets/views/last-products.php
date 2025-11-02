@@ -4,7 +4,7 @@
         <div class="row align-items-end mb-40">
             <div class="col-lg-6">
                 <div class="content-title">
-                    <h2>Eng so'nggi mahsulotlar</h2>
+                    <h2><?= Yii::t('app', 'Eng so`nggi mahsulotlar') ?></h2>
                 </div>
             </div>
         </div>
@@ -28,15 +28,15 @@
                             <h3><a href="<?=yii\helpers\Url::to(['product/view', 'id' => $model->id])?>"><?= $model->name ?></a></h3>
                             <div class="ratings">
                                 <?php if ($model->in_stock) : ?>
-                                <span class="badge bg bg-success promo-text text-light style1">Sotuvda mavjud</span>
+                                <span class="badge bg bg-success promo-text text-light style1"><?= Yii::t('app', 'Sotuvda mavjud') ?></span>
                                 <?php else : ?>
-                                <span class="badge bg bg-danger promo-text text-light style1">Sotuvda mavjud emas</span>
+                                <span class="badge bg bg-danger promo-text text-light style1"><?= Yii::t('app', 'Sotuvda mavjud emas') ?></span>
                                 <?php endif; ?>
                             </div>
                             <?php if ($model->discount_price) : ?>
-                                <p class="product-price"><span class="discount"><?= number_format($model->price , '0', ' ', ' ') ?> so'm</span><?= number_format($model->discount_price , '0', ' ', ' ') ?> so'm</p>
+                                <p class="product-price"><span class="discount"><?= number_format($model->price , '0', ' ', ' ') ?> <?= Yii::t('app', 'so`m') ?></span><?= number_format($model->discount_price , '0', ' ', ' ') ?> <?= Yii::t('app', 'so`m') ?></p>
                             <?php else : ?>
-                                <p class="product-price"><?= number_format($model->price , '0', ' ', ' ') ?> so'm</p>
+                                <p class="product-price"><?= number_format($model->price , '0', ' ', ' ') ?> <?= Yii::t('app', 'so`m') ?></p>
                             <?php endif; ?>
                         </div>
                         <a class="add-to-cart" data-id="<?= $model->id ?>" href="<?=yii\helpers\Url::to(['cart/add', 'id' => $model->id])?>">

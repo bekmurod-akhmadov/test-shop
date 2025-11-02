@@ -10,6 +10,7 @@ use common\models\Address;
 use frontend\models\SignupForm;
 use common\models\Order;
 use common\models\OrderItem;
+use common\models\Comment;
 
 class ClientController extends Controller
 {
@@ -150,6 +151,16 @@ class ClientController extends Controller
         return $this->render('order-item', [
             'models' => $models,    
             'order' => $order
+        ]);
+    }
+
+    public function actionComment()
+    {
+        $client_id = Yii::$app->user->identity->id;
+        $models = Comment::find()->where(['client_id' => $client_id])->all();
+
+        return $this->render('comment', [
+            'models' => $models
         ]);
     }
 

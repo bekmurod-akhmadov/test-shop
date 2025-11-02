@@ -12,9 +12,9 @@
             <div class="cart-item-info" style="width: 40%;">
                 <h5><a href="<?=yii\helpers\Url::to(['product/view', 'id' => $model->product->id])?>"><?= $model->product->name ?></a></h5>
                 <?php if ($model->product->discount_price) : ?>
-                    <p class="product-price"><span class="discount"><?= number_format($model->product->price , '0', ' ', ' ') ?> so'm</span><?= number_format($model->product->discount_price , '0', ' ', ' ') ?> so'm</p>
+                    <p class="product-price"><span class="discount"><?= number_format($model->product->price , '0', ' ', ' ') ?> <?= Yii::t('app', 'so`m') ?></span><?= number_format($model->product->discount_price , '0', ' ', ' ') ?> <?= Yii::t('app', 'so`m') ?></p>
                 <?php else : ?>
-                    <p class="product-price"><?= number_format($model->product->price , '0', ' ', ' ') ?> so'm</p>
+                    <p class="product-price"><?= number_format($model->product->price , '0', ' ', ' ') ?> <?= Yii::t('app', 'so`m') ?></p>
                 <?php endif; ?>
             </div>
             <div class="cart-item-qty calculate" style="max-width: 100px;">
@@ -34,17 +34,17 @@
 </div>
 <div class="cart-popup-footer">
     <div class="total-amt">
-        <h5>Jami summa: </h5>
-        <h5><?= number_format($total , '0', ' ', ' ') ?> so'm</h5>
+        <h5><?= Yii::t('app', 'Jami summa') ?>: </h5>
+        <h5><?= number_format($total , '0', ' ', ' ') ?> <?= Yii::t('app', 'so`m') ?></h5>
     </div>
     <div class="cart-popup-btn">
-        <a href="<?=yii\helpers\Url::to(['cart/index'])?>" class="btn style1">Savatchaga o'tish</a>
-        <a href="<?=yii\helpers\Url::to(['cart/checkout'])?>" class="btn style3">Rasmiylashtirish</a>
+        <a href="<?=yii\helpers\Url::to(['cart/index'])?>" class="btn style1"><?= Yii::t('app', 'Savatchaga o\'tish') ?></a>
+        <a href="<?=yii\helpers\Url::to(['cart/checkout'])?>" class="btn style3"><?= Yii::t('app', 'Rasmiylashtirish') ?></a>
     </div>
 </div>
 <?php else: ?>
     <div class="alert alert-warning" style="margin-top:100px;">
-        <p>Savatcha bo'sh</p>
+        <p><?= Yii::t('app', 'Savatcha bo\'sh') ?></p>
     </div>
 <?php endif?>
 

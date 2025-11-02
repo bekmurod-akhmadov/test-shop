@@ -7,37 +7,43 @@
                                     <li>
                                         <a href="<?=yii\helpers\Url::to(['client/settings'])?>">
                                             <i class="flaticon-next"></i>
-                                            Mening ma'lumotlarim
+                                            <?= Yii::t('app', 'Shaxsiy ma`lumotlar') ?>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="<?=yii\helpers\Url::to(['client/add-address'])?>">
                                             <i class="flaticon-next"></i>
-                                            Manzil qo'shish
+                                            <?= Yii::t('app', 'Manzil qo`shish') ?>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="<?=yii\helpers\Url::to(['cart/index'])?>">
                                             <i class="flaticon-next"></i>
-                                            Savatcha
+                                            <?= Yii::t('app', 'Savatcha') ?>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="<?=yii\helpers\Url::to(['cart/wishlist'])?>">
                                             <i class="flaticon-next"></i>
-                                            Yoqtirganlarim
+                                            <?= Yii::t('app', 'Yoqtirganlarim') ?>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="<?=yii\helpers\Url::to(['client/my-orders'])?>">
                                             <i class="flaticon-next"></i>
-                                            Buyurtmalarim
+                                            <?= Yii::t('app', 'Buyurtmalarim') ?>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?=yii\helpers\Url::to(['client/comment'])?>">
+                                            <i class="flaticon-next"></i>
+                                            <?= Yii::t('app', 'Mening izohlarim') ?>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="<?=yii\helpers\Url::to(['client/logout'])?>">
                                             <i class="flaticon-next"></i>
-                                            Chiqish
+                                            <?= Yii::t('app', 'Chiqish') ?>
                                         </a>
                                     </li>
                                 </ul>

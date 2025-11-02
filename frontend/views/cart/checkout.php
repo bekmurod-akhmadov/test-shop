@@ -12,10 +12,10 @@ use yii\bootstrap5\ActiveForm;
                         <div class="row align-items-center">
                             <div class="col-md-7 col-sm-8">
                                 <div class="breadcrumb-title">
-                                    <h2>Rasmiylashtirish</h2>
+                                    <h2><?= Yii::t('app', 'Rasmiylashtirish') ?></h2>
                                     <ul class="breadcrumb-menu list-style">
-                                        <li><a href="<?=Url::to(['site/index'])?>">Asosiy </a></li>
-                                        <li>Rasmiylashtirish</li>
+                                        <li><a href="<?=Url::to(['site/index'])?>"><?= Yii::t('app', 'Asosiy') ?> </a></li>
+                                        <li><?= Yii::t('app', 'Rasmiylashtirish') ?></li>
                                     </ul>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@ use yii\bootstrap5\ActiveForm;
                                 <div class="row">
                                     <div class="col-xl-6">
                                         <div class="checkout-promobox">
-                                        <p class="mb-0">Buyurtmani rasmiylashtirish uchun shaxsiy malumotlaringizni <a href="<?=Url::to(['client/settings'])?>" class="link style1">to'ldiring</a></p>
+                                        <p class="mb-0"><?= Yii::t('app', 'Buyurtmani rasmiylashtirish uchun shaxsiy malumotlaringizni') ?> <a href="<?=Url::to(['client/settings'])?>" class="link style1"><?= Yii::t('app', 'to`ldiring') ?></a></p>
                                         </div>
                                     </div>
                                </div>
@@ -49,7 +49,7 @@ use yii\bootstrap5\ActiveForm;
                                 ]); ?>    
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <h3 class="checkout-box-title">Shaxsiy ma'lumotlar</h3>
+                                            <h3 class="checkout-box-title"><?= Yii::t('app', 'Shaxsiy ma`lumotlar') ?></h3>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
@@ -92,13 +92,13 @@ use yii\bootstrap5\ActiveForm;
                                             <div class="form-group">
                                                 <?=$form->field($client, 'address_id')->dropDownList(
                                                     $client->getAddressesList(),[
-                                                    'prompt'=>'Manzilni tanlang',
+                                                    'prompt'=>Yii::t('app', 'Manzilni tanlang'),
                                                     'required' => true,
                                                 ])->label(false)?>
                                             </div>
                                         </div>
                                         <?php if($client->isCompleted()): ?>
-                                            <?=yii\helpers\Html::submitButton('Buyurtmani rasmiylashtirish', ['class' => 'btn style1 d-block w-100 mt-25'])?>
+                                            <?=yii\helpers\Html::submitButton(Yii::t('app', 'Buyurtmani rasmiylashtirish'), ['class' => 'btn style1 d-block w-100 mt-25'])?>
                                         <?php endif ?>
                                     </div>
                                 <?php $form->end() ?>
@@ -106,7 +106,7 @@ use yii\bootstrap5\ActiveForm;
                             </div>
                             <div class="col-xl-5 col-lg-5">
                                 <div class="checkout-details bg-albastor">
-                                    <h3 class="checkout-box-title">Buyurtmalaringiz</h3>
+                                    <h3 class="checkout-box-title"><?= Yii::t('app', 'Buyurtmalaringiz') ?></h3>
                                     <?php if(!empty($carts)): ?>
                                         <?php foreach($carts as $cart): ?>
                                             <div class="checkout_items">
@@ -120,7 +120,7 @@ use yii\bootstrap5\ActiveForm;
                                                     X <?=$cart->qty?>
                                                 </div>
                                                 <div class="checkout_items_price">
-                                                    <?= number_format($cart->product->actualPrice(),'0', ' ', ' ' )?> so'm/Kg
+                                                    <?= number_format($cart->product->actualPrice(),'0', ' ', ' ' )?> <?= Yii::t('app', 'so`m/Kg') ?>
                                                 </div>
                                             </div>
                                         <?php endforeach ?>

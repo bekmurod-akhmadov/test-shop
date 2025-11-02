@@ -12,10 +12,10 @@ use yii\bootstrap5\ActiveForm;
                         <div class="row align-items-center">
                             <div class="col-md-7 col-sm-8">
                                 <div class="breadcrumb-title">
-                                    <h2>Rasmiylashtirish</h2>
+                                    <h2><?= Yii::t('app', 'Rasmiylashtirish') ?></h2>
                                     <ul class="breadcrumb-menu list-style">
-                                        <li><a href="<?=Url::to(['site/index'])?>">Asosiy </a></li>
-                                        <li>Rasmiylashtirish</li>
+                                        <li><a href="<?=Url::to(['site/index'])?>"><?= Yii::t('app', 'Asosiy') ?> </a></li>
+                                        <li><?= Yii::t('app', 'Rasmiylashtirish') ?></li>
                                     </ul>
                                 </div>
                             </div>
@@ -34,9 +34,9 @@ use yii\bootstrap5\ActiveForm;
                         <div class="row">
                             <div class="col-lg-12 text-center">
                                 <img src="/default/ok.png" alt="">
-                                <h2>Buyurtmangiz qabul qilindi</h2>
-                                <p>Buyurtmangiz qabul qilindi.Tez orada operatorlarimiz siz bilan bog'lanishadi</p>
-                                <a href="<?=Url::to(['product/index'])?>" class="btn style1">Haridni davom ettirish</a>
+                                <h2><?= Yii::t('app', 'Buyurtmangiz qabul qilindi') ?></h2>
+                                <p><?= Yii::t('app', 'Buyurtmangiz qabul qilindi.Tez orada operatorlarimiz siz bilan bog`lanishadi') ?></p>
+                                <a href="<?=Url::to(['product/index'])?>" class="btn style1"><?= Yii::t('app', 'Haridni davom ettirish') ?></a>
                             </div>
                         </div>
                     </div>

@@ -12,10 +12,10 @@ $this->title = "Ma'lumtlarni tahrirlash";
             <div class="row align-items-center">
                 <div class="col-md-7 col-sm-8">
                     <div class="breadcrumb-title">
-                        <h2>Manzil qo'shish</h2>
+                        <h2><?= Yii::t('app', 'Manzil qo`shish') ?></h2>
                         <ul class="breadcrumb-menu list-style">
-                            <li><a href="<?=yii\helpers\Url::home()?>">Asosiy </a></li>
-                            <li>Manzil qo'shish</li>
+                            <li><a href="<?=yii\helpers\Url::home()?>"><?= Yii::t('app', 'Asosiy') ?> </a></li>
+                            <li><?= Yii::t('app', 'Manzil qo`shish') ?></li>
                         </ul>
                     </div>
                 </div>
@@ -40,7 +40,7 @@ $this->title = "Ma'lumtlarni tahrirlash";
                         <div class="col-lg-12">
                             <div class="login-form-wrap">
                                 <div class="login-header">
-                                    <h3>Manzil qo'shish</h3>
+                                    <h3><?= Yii::t('app', 'Manzil qo`shish') ?></h3>
                                 </div>
                                     <div class="login-body">
                                     <?php $form = ActiveForm::begin([
@@ -50,21 +50,21 @@ $this->title = "Ma'lumtlarni tahrirlash";
                                             <div class="col-lg-12">
                                                 <div class="form-group">
                                                     <?= $form->field($model, 'city')->textInput([
-                                                        'placeholder' => 'Shahar',
+                                                        'placeholder' => Yii::t('app', 'Shahar'),
                                                     ])->label(false) ?>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-group">
                                                     <?= $form->field($model, 'district')->textInput([
-                                                        'placeholder' => 'Tumanni kiriting',
+                                                        'placeholder' => Yii::t('app', 'Tumanni kiriting'),
                                                     ])->label(false) ?>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-group">
                                                     <?= $form->field($model, 'address')->textInput([
-                                                        'placeholder' => 'Manzil',
+                                                        'placeholder' => Yii::t('app', 'Manzil'),
                                                     ])->label(false) ?>
                                                 </div>
                                             </div>
@@ -72,7 +72,7 @@ $this->title = "Ma'lumtlarni tahrirlash";
                                             <div class="col-lg-12">
                                                 <div class="form-group">
                                                     <button class="btn style1">
-                                                        Saqlash 
+                                                        <?= Yii::t('app', 'Saqlash') ?> 
                                                     </button>
                                                 </div>
                                             </div>
